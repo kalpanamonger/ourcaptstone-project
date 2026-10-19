@@ -1,0 +1,1308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5 | Hexadecimal Number System Conversion</title>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    :root {
+      --lesson-primary: #8899b9;
+      --lesson-light: #eff6ff;
+      --lesson-dark: #2309a3;
+      --lesson-border: #401b95;
+      --lesson-text: #263449;
+    }
+
+    .lesson-container {
+      max-width: 1050px;
+      margin: 30px auto;
+      padding: 20px;
+      color: var(--lesson-text);
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    .lesson-hero {
+      padding: 35px 25px;
+      border-radius: 18px;
+      color: white;
+      background: linear-gradient(135deg, #0543a0, #e7eae4);
+      margin-bottom: 25px;
+    }
+
+    .lesson-hero h1 {
+      color: white;
+      margin-top: 0;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+    }
+
+    .lesson-section {
+      background: white;
+      border: 1px solid var(--lesson-border);
+      border-radius: 14px;
+      padding: 25px;
+      margin: 22px 0;
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.05);
+    }
+
+    .lesson-section h2 {
+      color: var(--lesson-dark);
+      margin-top: 0;
+      border-bottom: 2px solid var(--lesson-light);
+      padding-bottom: 10px;
+    }
+
+    .lesson-section h3 {
+      color: var(--lesson-primary);
+    }
+
+    .number-highlight {
+      display: inline-block;
+      background: var(--lesson-light);
+      color: var(--lesson-dark);
+      padding: 8px 13px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 5px 3px;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border-left: 5px solid var(--lesson-primary);
+      padding: 15px 18px;
+      margin: 15px 0;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .example-box p {
+      margin: 8px 0;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .lesson-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 280px;
+    }
+
+    .lesson-table th,
+    .lesson-table td {
+      border: 1px solid var(--lesson-border);
+      padding: 11px;
+      text-align: center;
+    }
+
+    .lesson-table th {
+      background: var(--lesson-light);
+      color: var(--lesson-dark);
+    }
+
+    .lesson-table tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .steps {
+      padding-left: 24px;
+    }
+
+    .steps li {
+      margin: 8px 0;
+    }
+
+    .lesson-note {
+      background: #fefce8;
+      border-left: 5px solid #eab308;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .converter {
+      background: #f8fafc;
+      border: 2px solid var(--lesson-border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .converter label {
+      display: block;
+      font-weight: bold;
+      margin: 12px 0 5px;
+    }
+
+    .converter input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .lesson-button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin: 10px 5px 5px 0;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      background: var(--lesson-primary);
+      color: white;
+    }
+
+    .lesson-button:hover {
+      filter: brightness(0.9);
+    }
+
+    .secondary-button {
+      background: #475569;
+    }
+
+    .result-box {
+      background: white;
+      border: 1px solid var(--lesson-border);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .result-row {
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .question {
+      border: 1px solid var(--lesson-border);
+      padding: 17px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .question p {
+      margin-top: 0;
+      font-weight: bold;
+    }
+
+    .question label {
+      display: block;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+
+    .question input {
+      margin-right: 7px;
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .correct {
+      color: #15803d;
+    }
+
+    .incorrect {
+      color: #b91c1c;
+    }
+
+    .lesson-navigation {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .lesson-navigation a {
+      text-decoration: none;
+      display: inline-block;
+      background: var(--lesson-primary);
+      color: white;
+      padding: 12px 17px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .lesson-navigation a:hover {
+      background: var(--lesson-dark);
+    }
+
+    .answer-details {
+      margin-top: 15px;
+      border: 1px solid var(--lesson-border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .answer-details summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--lesson-dark);
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .memory-card {
+      background: var(--lesson-light);
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .memory-card strong {
+      display: block;
+      color: var(--lesson-dark);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 600px) {
+      .lesson-container {
+        padding: 12px;
+        margin: 15px auto;
+      }
+
+      .lesson-section {
+        padding: 17px;
+      }
+
+      .lesson-hero {
+        padding: 25px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">DTI Learning Hub</div>
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#">Course ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="lesson1.html">Lesson 1</a></li>
+          <li><a href="lesson2.html">Lesson 2</a></li>
+          <li><a href="lesson3.html">Lesson 3</a></li>
+          <li><a href="lesson4.html">Lesson 4</a></li>
+          <li><a href="lesson5.html" aria-current="page">Lesson 5</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Resources ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../student-resources.html">Student Resources</a></li>
+          <li><a href="../teacher-resources.html">Teacher Resources</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../video.html">Videos</a></li>
+      <li><a href="../quiz.html">Quiz</a></li>
+
+      <li class="dropdown">
+        <a href="#">More ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../practice.html">Practice</a></li>
+          <li><a href="../real-life.html">Real-Life Applications</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="lesson-container">
+
+    <!-- Lesson heading -->
+    <header class="lesson-hero">
+      <p>CLASS IX · DIGITAL TECHNOLOGY AND INNOVATION</p>
+      <h1>Lesson 5: Hexadecimal Number System Conversion</h1>
+      <p>
+        Learn to convert hexadecimal numbers into binary, octal and decimal
+        using step-by-step methods and interactive practice.
+      </p>
+    </header>
+
+    <!-- 1 -->
+    <section class="lesson-section">
+      <h2>1. What Is a Number System?</h2>
+
+      <p>
+        A number system is a way of representing numbers using a particular
+        set of digits and a specific base.
+      </p>
+
+      <p>In Digital Technology and Innovation, we mainly use four number systems:</p>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Number System</th>
+              <th>Base</th>
+              <th>Digits Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Binary</td><td>2</td><td>0, 1</td></tr>
+            <tr><td>Octal</td><td>8</td><td>0–7</td></tr>
+            <tr><td>Decimal</td><td>10</td><td>0–9</td></tr>
+            <tr><td>Hexadecimal</td><td>16</td><td>0–9, A–F</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-note">
+        <strong>Remember:</strong> The base tells us the number of different
+        digit values used in a number system.
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="lesson-section">
+      <h2>2. What Is the Hexadecimal Number System?</h2>
+
+      <p>
+        The hexadecimal number system has a base of <strong>16</strong>.
+        It uses ten numerical digits and six letters.
+      </p>
+
+      <div class="example-box">
+        <strong>Digits:</strong>
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+      </div>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Hexadecimal</th>
+              <th>Decimal Value</th>
+              <th>Hexadecimal</th>
+              <th>Decimal Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>0</td><td>8</td><td>8</td></tr>
+            <tr><td>1</td><td>1</td><td>9</td><td>9</td></tr>
+            <tr><td>2</td><td>2</td><td>A</td><td>10</td></tr>
+            <tr><td>3</td><td>3</td><td>B</td><td>11</td></tr>
+            <tr><td>4</td><td>4</td><td>C</td><td>12</td></tr>
+            <tr><td>5</td><td>5</td><td>D</td><td>13</td></tr>
+            <tr><td>6</td><td>6</td><td>E</td><td>14</td></tr>
+            <tr><td>7</td><td>7</td><td>F</td><td>15</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Hexadecimal is useful in computing because it represents long binary
+        numbers in a shorter and easier-to-read form. It is used in memory
+        addresses, colour codes and debugging.
+      </p>
+    </section>
+
+    <!-- 3 -->
+    <section class="lesson-section">
+      <h2>3. Why Do We Convert Number Systems?</h2>
+
+      <p>
+        Computers work internally using binary numbers, but binary numbers
+        can become very long and difficult for humans to read.
+      </p>
+
+      <div class="example-box">
+        <p><strong>Binary:</strong> 111011101010₂</p>
+        <p><strong>Hexadecimal:</strong> EEA₁₆</p>
+        <p>Both represent the same value.</p>
+      </div>
+
+      <p>
+        Number-base conversion means changing a number from one number system
+        to another without changing its actual value.
+      </p>
+    </section>
+
+    <!-- 4 -->
+    <section class="lesson-section">
+      <h2>4. Hexadecimal to Binary Conversion</h2>
+
+      <p>
+        Each hexadecimal digit is converted into exactly
+        <strong>four binary digits (bits)</strong>.
+      </p>
+
+      <div class="example-box">
+        <strong>Why four bits?</strong>
+        <p>16 = 2⁴</p>
+        <p>Therefore, one hexadecimal digit corresponds to four binary bits.</p>
+      </div>
+
+      <h3>Hexadecimal-to-Binary Conversion Table</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr><th>Hex</th><th>Binary</th><th>Hex</th><th>Binary</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>0000</td><td>8</td><td>1000</td></tr>
+            <tr><td>1</td><td>0001</td><td>9</td><td>1001</td></tr>
+            <tr><td>2</td><td>0010</td><td>A</td><td>1010</td></tr>
+            <tr><td>3</td><td>0011</td><td>B</td><td>1011</td></tr>
+            <tr><td>4</td><td>0100</td><td>C</td><td>1100</td></tr>
+            <tr><td>5</td><td>0101</td><td>D</td><td>1101</td></tr>
+            <tr><td>6</td><td>0110</td><td>E</td><td>1110</td></tr>
+            <tr><td>7</td><td>0111</td><td>F</td><td>1111</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>5. Steps for Hexadecimal to Binary</h3>
+
+      <ol class="steps">
+        <li>Write the hexadecimal number.</li>
+        <li>Separate each hexadecimal digit.</li>
+        <li>Replace each digit with its four-bit binary equivalent.</li>
+        <li>Join all the binary groups together.</li>
+      </ol>
+
+      <div class="lesson-note">
+        <strong>Memory trick: HEX → 4 BITS</strong>
+      </div>
+
+      <h3>Example 1: Convert (3A)₁₆ to Binary</h3>
+      <div class="example-box">
+        <p>Step 1: Separate the digits: 3 | A</p>
+        <p>Step 2: Convert each digit:</p>
+        <p>3 = 0011</p>
+        <p>A = 1010</p>
+        <p>Step 3: Join the groups: 0011 1010</p>
+        <p><strong>Answer: (3A)₁₆ = (00111010)₂</strong></p>
+      </div>
+
+      <h3>Example 2: Convert (7C)₁₆ to Binary</h3>
+      <div class="example-box">
+        <p>7 = 0111</p>
+        <p>C = 1100</p>
+        <p><strong>Answer: (7C)₁₆ = (01111100)₂</strong></p>
+      </div>
+
+      <h3>Example 3: Convert (F2)₁₆ to Binary</h3>
+      <div class="example-box">
+        <p>F = 1111</p>
+        <p>2 = 0010</p>
+        <p><strong>Answer: (F2)₁₆ = (11110010)₂</strong></p>
+      </div>
+
+      <h3>Example 4: Convert (2F5)₁₆ to Binary</h3>
+      <div class="example-box">
+        <p>2 = 0010</p>
+        <p>F = 1111</p>
+        <p>5 = 0101</p>
+        <p><strong>Answer: (2F5)₁₆ = (001011110101)₂</strong></p>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="lesson-section">
+      <h2>6. Hexadecimal to Octal Conversion</h2>
+
+      <p>
+        Hexadecimal and octal do not have a direct grouping relationship.
+        Therefore, we use binary as an intermediate step.
+      </p>
+
+      <div class="memory-grid">
+        <div class="memory-card">
+          <strong>Step 1</strong>
+          HEX → BINARY
+        </div>
+        <div class="memory-card">
+          <strong>Step 2</strong>
+          Group 3 bits
+        </div>
+        <div class="memory-card">
+          <strong>Step 3</strong>
+          BINARY → OCTAL
+        </div>
+      </div>
+
+      <h3>7. Steps for Hexadecimal to Octal</h3>
+
+      <ol class="steps">
+        <li>Convert each hexadecimal digit into four-bit binary.</li>
+        <li>Write the binary digits continuously.</li>
+        <li>Starting from the right, group the bits into sets of three.</li>
+        <li>Add leading zeros if the leftmost group has fewer than three bits.</li>
+        <li>Convert each three-bit group into an octal digit.</li>
+      </ol>
+
+      <div class="lesson-note">
+        <strong>Important:</strong> One hexadecimal digit equals four bits.
+        Three binary bits correspond to one octal digit.
+      </div>
+
+      <h3>8. Binary-to-Octal Conversion Table</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead><tr><th>Binary</th><th>Octal</th></tr></thead>
+          <tbody>
+            <tr><td>000</td><td>0</td></tr>
+            <tr><td>001</td><td>1</td></tr>
+            <tr><td>010</td><td>2</td></tr>
+            <tr><td>011</td><td>3</td></tr>
+            <tr><td>100</td><td>4</td></tr>
+            <tr><td>101</td><td>5</td></tr>
+            <tr><td>110</td><td>6</td></tr>
+            <tr><td>111</td><td>7</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Example 1: Convert (3A)₁₆ to Octal</h3>
+      <div class="example-box">
+        <p><strong>Step 1: Convert to binary.</strong></p>
+        <p>3 = 0011; A = 1010</p>
+        <p>Binary = 00111010</p>
+
+        <p><strong>Step 2: Group three bits from the right.</strong></p>
+        <p>00 | 111 | 010</p>
+        <p>Add a leading zero: 000 | 111 | 010</p>
+
+        <p><strong>Step 3: Convert the groups.</strong></p>
+        <p>000 = 0, 111 = 7, 010 = 2</p>
+        <p><strong>Answer: (3A)₁₆ = (72)₈</strong></p>
+      </div>
+
+      <h3>Example 2: Convert (2F)₁₆ to Octal</h3>
+      <div class="example-box">
+        <p>2F = 00101111₂</p>
+        <p>Group: 000 | 101 | 111</p>
+        <p>000 = 0, 101 = 5, 111 = 7</p>
+        <p><strong>Answer: (2F)₁₆ = (57)₈</strong></p>
+      </div>
+
+      <h3>Example 3: Convert (A5)₁₆ to Octal</h3>
+      <div class="example-box">
+        <p>A = 1010; 5 = 0101</p>
+        <p>Binary = 10100101</p>
+        <p>Group: 010 | 100 | 101</p>
+        <p>010 = 2, 100 = 4, 101 = 5</p>
+        <p><strong>Answer: (A5)₁₆ = (245)₈</strong></p>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="lesson-section">
+      <h2>9. Hexadecimal to Decimal Conversion</h2>
+
+      <p>
+        To convert hexadecimal to decimal, use the positional-value method.
+        Multiply each digit by its positional value and add the results.
+      </p>
+
+      <h3>10. Positional Values in Hexadecimal</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr><th>Position from Right</th><th>Power</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1st</td><td>16⁰</td><td>1</td></tr>
+            <tr><td>2nd</td><td>16¹</td><td>16</td></tr>
+            <tr><td>3rd</td><td>16²</td><td>256</td></tr>
+            <tr><td>4th</td><td>16³</td><td>4096</td></tr>
+            <tr><td>5th</td><td>16⁴</td><td>65536</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-note">
+        <strong>Important rule:</strong> Start counting powers from the
+        right. The rightmost digit always has the value 16⁰.
+      </div>
+
+      <h3>11. Formula for Hexadecimal to Decimal</h3>
+      <div class="example-box">
+        <p>For ABC₁₆:</p>
+        <p>A × 16² + B × 16¹ + C × 16⁰</p>
+        <p>Remember to change A–F into their decimal values first.</p>
+      </div>
+
+      <h3>12. Steps for Hexadecimal to Decimal</h3>
+      <ol class="steps">
+        <li>Write the hexadecimal number.</li>
+        <li>Write powers of 16 from right to left.</li>
+        <li>Change letters A–F into decimal values.</li>
+        <li>Multiply each digit by its corresponding power of 16.</li>
+        <li>Add all the results.</li>
+      </ol>
+
+      <h3>13. Example: Convert (3AF)₁₆ to Decimal</h3>
+      <div class="example-box">
+        <p>A = 10 and F = 15</p>
+        <p>3AF₁₆ = 3 × 16² + 10 × 16¹ + 15 × 16⁰</p>
+        <p>= 3 × 256 + 10 × 16 + 15 × 1</p>
+        <p>= 768 + 160 + 15</p>
+        <p><strong>Answer: (3AF)₁₆ = (943)₁₀</strong></p>
+      </div>
+
+      <h3>14. Example: Convert (2B)₁₆ to Decimal</h3>
+      <div class="example-box">
+        <p>B = 11</p>
+        <p>2B₁₆ = 2 × 16¹ + 11 × 16⁰</p>
+        <p>= 32 + 11</p>
+        <p><strong>Answer: (2B)₁₆ = (43)₁₀</strong></p>
+      </div>
+
+      <h3>15. Example: Convert (7C)₁₆ to Decimal</h3>
+      <div class="example-box">
+        <p>C = 12</p>
+        <p>7C₁₆ = 7 × 16¹ + 12 × 16⁰</p>
+        <p>= 112 + 12</p>
+        <p><strong>Answer: (7C)₁₆ = (124)₁₀</strong></p>
+      </div>
+
+      <h3>16. Example: Convert (1F4)₁₆ to Decimal</h3>
+      <div class="example-box">
+        <p>F = 15</p>
+        <p>1F4₁₆ = 1 × 16² + 15 × 16¹ + 4 × 16⁰</p>
+        <p>= 256 + 240 + 4</p>
+        <p><strong>Answer: (1F4)₁₆ = (500)₁₀</strong></p>
+      </div>
+    </section>
+
+    <!-- 17 -->
+    <section class="lesson-section">
+      <h2>17. Very Important Rules to Remember</h2>
+
+      <div class="example-box">
+        <h3>Hexadecimal → Binary</h3>
+        <p>Each hexadecimal digit = four binary bits.</p>
+        <p>A = 1010 and F = 1111</p>
+      </div>
+
+      <div class="example-box">
+        <h3>Hexadecimal → Octal</h3>
+        <p>Convert hexadecimal to binary, then group three bits from the right.</p>
+      </div>
+
+      <div class="example-box">
+        <h3>Hexadecimal → Decimal</h3>
+        <p>Multiply each digit by its corresponding power of 16 and add.</p>
+      </div>
+    </section>
+
+    <!-- 18 -->
+    <section class="lesson-section">
+      <h2>18. Easy Memory Tricks</h2>
+
+      <div class="memory-grid">
+        <div class="memory-card">
+          <strong>One Hex, Four Bits</strong>
+          HEX → BINARY
+        </div>
+        <div class="memory-card">
+          <strong>Three Bits, One Octal</strong>
+          BINARY → OCTAL
+        </div>
+        <div class="memory-card">
+          <strong>Go Through Binary</strong>
+          HEX → OCTAL
+        </div>
+        <div class="memory-card">
+          <strong>Multiply and Add</strong>
+          HEX → DECIMAL
+        </div>
+      </div>
+    </section>
+
+    <!-- 19 -->
+    <section class="lesson-section">
+      <h2>19. Common Mistakes to Avoid</h2>
+
+      <h3>Mistake 1: Forgetting the values of A–F</h3>
+      <div class="example-box">
+        Incorrect: A = 1<br>
+        Correct: A = 10
+      </div>
+
+      <h3>Mistake 2: Using fewer than four bits</h3>
+      <div class="example-box">
+        Incorrect: A = 101<br>
+        Correct: A = 1010
+      </div>
+
+      <h3>Mistake 3: Grouping binary incorrectly for octal</h3>
+      <div class="example-box">
+        Group three bits from the right, not four bits.
+        <p>Correct: 101 | 010 | 111</p>
+      </div>
+
+      <h3>Mistake 4: Starting powers from the left</h3>
+      <div class="example-box">
+        The rightmost hexadecimal digit uses 16⁰.
+      </div>
+
+      <h3>Mistake 5: Forgetting the base</h3>
+      <div class="example-box">
+        Write the base when showing your answer:
+        <strong>(3A)₁₆ = (00111010)₂</strong>
+      </div>
+    </section>
+
+    <!-- 20 -->
+    <section class="lesson-section">
+      <h2>20. Quick Comparison</h2>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr><th>Conversion</th><th>Main Method</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hex → Binary</td>
+              <td>Replace each hex digit with four bits.</td>
+            </tr>
+            <tr>
+              <td>Hex → Octal</td>
+              <td>Hex → Binary → Groups of three bits → Octal</td>
+            </tr>
+            <tr>
+              <td>Hex → Decimal</td>
+              <td>Multiply by powers of 16 and add.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Interactive converter -->
+    <section class="lesson-section">
+      <h2>21. Try It Yourself: Hexadecimal Converter</h2>
+
+      <p>
+        Enter a hexadecimal number using digits 0–9 and letters A–F.
+        The converter will display its binary, octal and decimal equivalents.
+      </p>
+
+      <div class="converter">
+        <label for="hexInput">Enter a hexadecimal number:</label>
+
+        <input
+          type="text"
+          id="hexInput"
+          placeholder="Example: 3AF"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="converterMessage"
+        >
+
+        <button type="button" class="lesson-button" id="convertButton">
+          Convert Number
+        </button>
+
+        <button type="button"
+          class="lesson-button secondary-button" id="resetConverterButton">
+          Reset
+        </button>
+
+        <div id="converterMessage" class="feedback"
+          role="status" aria-live="polite"></div>
+
+        <div id="converterResults" class="result-box" hidden>
+          <div class="result-row">
+            <strong>Hexadecimal:</strong>
+            <span id="hexResult"></span>
+          </div>
+          <div class="result-row">
+            <strong>Binary:</strong>
+            <span id="binaryResult"></span>
+          </div>
+          <div class="result-row">
+            <strong>Octal:</strong>
+            <span id="octalResult"></span>
+          </div>
+          <div class="result-row">
+            <strong>Decimal:</strong>
+            <span id="decimalResult"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 22 -->
+    <section class="lesson-section">
+      <h2>22. Practice Questions: Hexadecimal to Binary</h2>
+
+      <p>Try solving these questions before revealing the answers.</p>
+
+      <ol class="steps">
+        <li>Convert (4B)₁₆ to binary.</li>
+        <li>Convert (7E)₁₆ to binary.</li>
+        <li>Convert (A3)₁₆ to binary.</li>
+        <li>Convert (CD)₁₆ to binary.</li>
+        <li>Convert (2F6)₁₆ to binary.</li>
+      </ol>
+
+      <details class="answer-details">
+        <summary>Show Answers</summary>
+        <ol>
+          <li>(4B)₁₆ = (01001011)₂</li>
+          <li>(7E)₁₆ = (01111110)₂</li>
+          <li>(A3)₁₆ = (10100011)₂</li>
+          <li>(CD)₁₆ = (11001101)₂</li>
+          <li>(2F6)₁₆ = (001011110110)₂</li>
+        </ol>
+      </details>
+    </section>
+
+    <!-- 23 -->
+    <section class="lesson-section">
+      <h2>23. Practice Questions: Hexadecimal to Octal</h2>
+
+      <ol class="steps">
+        <li>Convert (3A)₁₆ to octal.</li>
+        <li>Convert (2F)₁₆ to octal.</li>
+        <li>Convert (A5)₁₆ to octal.</li>
+        <li>Convert (1C)₁₆ to octal.</li>
+        <li>Convert (F2)₁₆ to octal.</li>
+      </ol>
+
+      <details class="answer-details">
+        <summary>Show Answers</summary>
+        <ol>
+          <li>(3A)₁₆ = (72)₈</li>
+          <li>(2F)₁₆ = (57)₈</li>
+          <li>(A5)₁₆ = (245)₈</li>
+          <li>(1C)₁₆ = (34)₈</li>
+          <li>(F2)₁₆ = (362)₈</li>
+        </ol>
+      </details>
+    </section>
+
+    <!-- 24 -->
+    <section class="lesson-section">
+      <h2>24. Practice Questions: Hexadecimal to Decimal</h2>
+
+      <ol class="steps">
+        <li>Convert (2A)₁₆ to decimal.</li>
+        <li>Convert (3F)₁₆ to decimal.</li>
+        <li>Convert (7C)₁₆ to decimal.</li>
+        <li>Convert (9E)₁₆ to decimal.</li>
+        <li>Convert (1AB)₁₆ to decimal.</li>
+      </ol>
+
+      <details class="answer-details">
+        <summary>Show Answers</summary>
+        <ol>
+          <li>(2A)₁₆ = (42)₁₀</li>
+          <li>(3F)₁₆ = (63)₁₀</li>
+          <li>(7C)₁₆ = (124)₁₀</li>
+          <li>(9E)₁₆ = (158)₁₀</li>
+          <li>(1AB)₁₆ = (427)₁₀</li>
+        </ol>
+      </details>
+    </section>
+
+    <!-- Interactive quiz -->
+    <section class="lesson-section">
+      <h2>25. Interactive Practice Quiz</h2>
+
+      <p>
+        Test your understanding. Select one answer for each question and
+        click <strong>Check My Answers</strong> to receive your score.
+      </p>
+
+      <form id="practiceForm">
+
+        <div class="question" data-answer="b">
+          <p>1. What is the decimal value of hexadecimal A?</p>
+          <label><input type="radio" name="q1" value="a"> 9</label>
+          <label><input type="radio" name="q1" value="b"> 10</label>
+          <label><input type="radio" name="q1" value="c"> 11</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>2. How many binary bits represent one hexadecimal digit?</p>
+          <label><input type="radio" name="q2" value="a"> 2 bits</label>
+          <label><input type="radio" name="q2" value="b"> 3 bits</label>
+          <label><input type="radio" name="q2" value="c"> 4 bits</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>3. Convert (3A)₁₆ to binary.</p>
+          <label><input type="radio" name="q3" value="a"> 00111010</label>
+          <label><input type="radio" name="q3" value="b"> 00110101</label>
+          <label><input type="radio" name="q3" value="c"> 00111100</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="b">
+          <p>4. Convert (2F)₁₆ to octal.</p>
+          <label><input type="radio" name="q4" value="a"> 47₈</label>
+          <label><input type="radio" name="q4" value="b"> 57₈</label>
+          <label><input type="radio" name="q4" value="c"> 67₈</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>5. What is the decimal value of (3AF)₁₆?</p>
+          <label><input type="radio" name="q5" value="a"> 933</label>
+          <label><input type="radio" name="q5" value="b"> 9430</label>
+          <label><input type="radio" name="q5" value="c"> 943</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>6. What is the decimal value of (7C)₁₆?</p>
+          <label><input type="radio" name="q6" value="a"> 124</label>
+          <label><input type="radio" name="q6" value="b"> 76</label>
+          <label><input type="radio" name="q6" value="c"> 132</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="b">
+          <p>7. What is the octal value of (A5)₁₆?</p>
+          <label><input type="radio" name="q7" value="a"> 225₈</label>
+          <label><input type="radio" name="q7" value="b"> 245₈</label>
+          <label><input type="radio" name="q7" value="c"> 255₈</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>8. What is the value of hexadecimal F in decimal?</p>
+          <label><input type="radio" name="q8" value="a"> 14</label>
+          <label><input type="radio" name="q8" value="b"> 16</label>
+          <label><input type="radio" name="q8" value="c"> 15</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>9. Which power of 16 belongs to the rightmost digit?</p>
+          <label><input type="radio" name="q9" value="a"> 16⁰</label>
+          <label><input type="radio" name="q9" value="b"> 16¹</label>
+          <label><input type="radio" name="q9" value="c"> 16²</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="b">
+          <p>10. What is the decimal value of (1AB)₁₆?</p>
+          <label><input type="radio" name="q10" value="a"> 417</label>
+          <label><input type="radio" name="q10" value="b"> 427</label>
+          <label><input type="radio" name="q10" value="c"> 437</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <button type="button" class="lesson-button" id="checkQuizButton">
+          Check My Answers
+        </button>
+
+        <button type="button"
+          class="lesson-button secondary-button" id="resetQuizButton">
+          Try Again
+        </button>
+
+        <div id="quizScore" class="result-box"
+          role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+
+    <!-- Exam tips -->
+    <section class="lesson-section">
+      <h2>Exam Tips</h2>
+
+      <div class="example-box">
+        <h3>Hexadecimal → Binary</h3>
+        Show the conversion of every digit into four bits.
+      </div>
+
+      <div class="example-box">
+        <h3>Hexadecimal → Octal</h3>
+        Show all three stages: hexadecimal, binary, groups of three bits,
+        and octal.
+      </div>
+
+      <div class="example-box">
+        <h3>Hexadecimal → Decimal</h3>
+        Show the digit values, positional calculation, multiplication
+        and final answer.
+      </div>
+
+      <p>Do not write only the final answer when working is required.</p>
+    </section>
+
+    <!-- Revision -->
+    <section class="lesson-section">
+      <h2>One-Page Revision</h2>
+
+      <div class="memory-grid">
+        <div class="memory-card">
+          <strong>Base = 16</strong>
+          Digits 0–9 and A–F
+        </div>
+        <div class="memory-card">
+          <strong>HEX → BINARY</strong>
+          One hex digit = 4 bits
+        </div>
+        <div class="memory-card">
+          <strong>HEX → OCTAL</strong>
+          Go through binary
+        </div>
+        <div class="memory-card">
+          <strong>HEX → DECIMAL</strong>
+          Powers of 16
+        </div>
+      </div>
+
+      <h3>Hexadecimal Letter Values</h3>
+      <div class="example-box">
+        A = 10 &nbsp; B = 11 &nbsp; C = 12<br>
+        D = 13 &nbsp; E = 14 &nbsp; F = 15
+      </div>
+
+      <h3>Powers of 16</h3>
+      <div class="example-box">
+        16⁰ = 1<br>
+        16¹ = 16<br>
+        16² = 256<br>
+        16³ = 4096
+      </div>
+
+      <div class="lesson-note">
+        <strong>Final reminder:</strong> HEX = 16; HEX to binary = four bits;
+        binary to octal = groups of three bits; HEX to decimal = multiply
+        by powers of 16 and add.
+      </div>
+    </section>
+
+    <!-- Lesson navigation -->
+    <div class="lesson-navigation">
+      <a href="lesson4.html">← Previous: Lesson 4</a>
+      <a href="../index.html">Back to Home →</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>DTI Learning Hub | Class 9 Digital Number System</p>
+  </footer>
+
+  <script src="../script.js"></script>
+
+  <script>
+    // ==========================================
+    // HEXADECIMAL CONVERTER
+    // ==========================================
+
+    const hexInput = document.getElementById("hexInput");
+    const converterMessage = document.getElementById("converterMessage");
+    const converterResults = document.getElementById("converterResults");
+
+    function convertHex() {
+      const input = hexInput.value.trim().replace(/\s+/g, "").toUpperCase();
+
+      if (!input) {
+        converterMessage.textContent = "Please enter a hexadecimal number.";
+        converterMessage.className = "feedback incorrect";
+        converterResults.hidden = true;
+        return;
+      }
+
+      if (!/^[0-9A-F]+$/.test(input)) {
+        converterMessage.textContent =
+          "Invalid hexadecimal number. Use digits 0–9 and letters A–F only.";
+        converterMessage.className = "feedback incorrect";
+        converterResults.hidden = true;
+        return;
+      }
+
+      try {
+        // BigInt supports integers larger than Number.MAX_SAFE_INTEGER.
+        const decimal = BigInt("0x" + input);
+
+        document.getElementById("hexResult").textContent =
+          input + "₁₆";
+
+        document.getElementById("binaryResult").textContent =
+          decimal.toString(2) + "₂";
+
+        document.getElementById("octalResult").textContent =
+          decimal.toString(8) + "₈";
+
+        document.getElementById("decimalResult").textContent =
+          decimal.toString(10) + "₁₀";
+
+        converterMessage.textContent =
+          "Conversion completed successfully!";
+
+        converterMessage.className = "feedback correct";
+        converterResults.hidden = false;
+
+      } catch (error) {
+        converterMessage.textContent =
+          "Unable to convert this number. Please check your input.";
+        converterMessage.className = "feedback incorrect";
+        converterResults.hidden = true;
+      }
+    }
+
+    function resetHexConverter() {
+      hexInput.value = "";
+      converterMessage.textContent = "";
+      converterMessage.className = "feedback";
+      converterResults.hidden = true;
+      hexInput.focus();
+    }
+
+    document.getElementById("convertButton")
+      .addEventListener("click", convertHex);
+
+    document.getElementById("resetConverterButton")
+      .addEventListener("click", resetHexConverter);
+
+    hexInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        convertHex();
+      }
+    });
+
+    // ==========================================
+    // INTERACTIVE PRACTICE QUIZ
+    // ==========================================
+
+    function checkAnswers() {
+      const questions = document.querySelectorAll(
+        "#practiceForm .question"
+      );
+
+      let score = 0;
+      let unanswered = 0;
+
+      questions.forEach(function(question) {
+        const correctAnswer = question.dataset.answer;
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
+        const feedback = question.querySelector(".feedback");
+
+        if (!selected) {
+          unanswered++;
+          feedback.textContent = "Please select an answer.";
+          feedback.className = "feedback incorrect";
+          return;
+        }
+
+        if (selected.value === correctAnswer) {
+          score++;
+          feedback.textContent = "Correct! Well done.";
+          feedback.className = "feedback correct";
+        } else {
+          const correctOption = question.querySelector(
+            'input[value="' + correctAnswer + '"]'
+          );
+
+          feedback.textContent =
+            "Incorrect. Correct answer: " +
+            correctOption.parentElement.textContent.trim();
+
+          feedback.className = "feedback incorrect";
+        }
+      });
+
+      const scoreBox = document.getElementById("quizScore");
+      const percentage = Math.round((score / questions.length) * 100);
+
+      let message = "";
+
+      if (percentage === 100) {
+        message = "Excellent! You answered every question correctly.";
+      } else if (percentage >= 70) {
+        message = "Great work! Review any incorrect answers.";
+      } else if (percentage >= 40) {
+        message = "Good effort! Revise the conversion methods and try again.";
+      } else {
+        message = "Keep practising! Review the worked examples before retrying.";
+      }
+
+      scoreBox.replaceChildren();
+
+      const scoreHeading = document.createElement("strong");
+      scoreHeading.textContent =
+        "Your score: " + score + " / " + questions.length +
+        " (" + percentage + "%)";
+
+      const scoreMessage = document.createElement("p");
+      scoreMessage.textContent = message;
+
+      scoreBox.appendChild(scoreHeading);
+      scoreBox.appendChild(scoreMessage);
+
+      if (unanswered > 0) {
+        const unansweredMessage = document.createElement("p");
+        unansweredMessage.textContent =
+          "Unanswered questions: " + unanswered;
+        scoreBox.appendChild(unansweredMessage);
+      } else {
+        const completeMessage = document.createElement("p");
+        completeMessage.textContent =
+          "You have answered all ten questions.";
+        scoreBox.appendChild(completeMessage);
+      }
+
+      scoreBox.hidden = false;
+    }
+
+    function resetQuiz() {
+      document.getElementById("practiceForm").reset();
+
+      document.querySelectorAll("#practiceForm .feedback")
+        .forEach(function(feedback) {
+          feedback.textContent = "";
+          feedback.className = "feedback";
+        });
+
+      document.getElementById("quizScore").hidden = true;
+      document.getElementById("quizScore").replaceChildren();
+    }
+
+    document.getElementById("checkQuizButton")
+      .addEventListener("click", checkAnswers);
+
+    document.getElementById("resetQuizButton")
+      .addEventListener("click", resetQuiz);
+  </script>
+
+</body>
+</html>

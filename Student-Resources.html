@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Resources | DTI Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">DTI Learning Hub</a>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="courses.html">Online Course</a>
+
+    <div class="dropdown">
+      <button class="dropdown-toggle" id="resourceButton">
+        Resources <span class="arrow">⌄</span>
+      </button>
+      <div class="dropdown-menu" id="resourceMenu">
+        <a href="student-resources.html">Student Resources</a>
+        <a href="teacher-resources.html">Teacher Resources</a>
+      </div>
+    </div>
+
+    <a href="quiz.html">Quiz</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <p class="eyebrow">LEARN • PRACTISE • IMPROVE</p>
+    <h1>Student Resources</h1>
+    <p>Your learning guide for understanding the Digital Number System.</p>
+  </section>
+
+  <section class="lesson-card">
+    <h2>1. Quick Revision Notes</h2>
+    <p>Learn the four common number systems and the digits each one uses.</p>
+
+    <table>
+      <tr>
+        <th>Number System</th>
+        <th>Base</th>
+        <th>Digits Used</th>
+        <th>Example</th>
+      </tr>
+      <tr>
+        <td>Decimal</td>
+        <td>10</td>
+        <td>0–9</td>
+        <td>245</td>
+      </tr>
+      <tr>
+        <td>Binary</td>
+        <td>2</td>
+        <td>0 and 1</td>
+        <td>1011</td>
+      </tr>
+      <tr>
+        <td>Octal</td>
+        <td>8</td>
+        <td>0–7</td>
+        <td>57</td>
+      </tr>
+      <tr>
+        <td>Hexadecimal</td>
+        <td>16</td>
+        <td>0–9 and A–F</td>
+        <td>2F</td>
+      </tr>
+    </table>
+
+    <h2>2. Understanding Binary Place Values</h2>
+    <p>In binary, each position represents a power of 2. Starting from the right, the place values are 1, 2, 4, 8, 16 and so on.</p>
+
+    <table>
+      <tr>
+        <th>Binary digit</th>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>Place value</th>
+        <td>8</td>
+        <td>4</td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>Calculation</th>
+        <td>8</td>
+        <td>0</td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+    </table>
+
+    <p><strong>Example:</strong> 1011₂ = 8 + 0 + 2 + 1 = 11₁₀.</p>
+
+    <h2>3. Worked Example: Convert Binary to Decimal</h2>
+    <p>Convert 1101₂ into decimal.</p>
+
+    <ol>
+      <li>Write the place values: 8, 4, 2, 1.</li>
+      <li>Multiply each binary digit by its place value.</li>
+      <li>Add the results: (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1).</li>
+      <li>The total is 8 + 4 + 0 + 1 = 13.</li>
+    </ol>
+
+    <p><strong>Answer: 1101₂ = 13₁₀.</strong></p>
+  </section>
+
+  <section class="lesson-card">
+    <h2>4. Practise Yourself</h2>
+    <p>What is the decimal value of 1010₂?</p>
+
+    <label>
+      <input type="radio" name="practice" value="8"> 8
+    </label>
+
+    <label>
+      <input type="radio" name="practice" value="10"> 10
+    </label>
+
+    <label>
+      <input type="radio" name="practice" value="12"> 12
+    </label>
+
+    <br>
+    <button onclick="checkAnswer()">Check Answer</button>
+    <p id="feedback" class="feedback"></p>
+  </section>
+
+  <section class="lesson-card">
+    <h2>5. Helpful Study Tips</h2>
+    <ul>
+      <li>Remember the base of each number system.</li>
+      <li>Practise binary conversions regularly.</li>
+      <li>Show your calculation steps clearly.</li>
+      <li>Check your answers before submitting them.</li>
+      <li>Review the lessons before taking the quiz.</li>
+    </ul>
+
+    <div class="resource-links">
+      <a href="courses.html" class="resource-button">Review Lessons →</a>
+      <a href="quiz.html" class="resource-button">Take the Quiz →</a>
+    </div>
+  </section>
+  
+  <!-- REFERENCES AND FURTHER READING -->
+  <section class="lesson-card references-section">
+    <p class="eyebrow">EXPLORE MORE</p>
+    <h2>6. References and Further Reading</h2>
+    <p>
+      Use these educational resources to strengthen your understanding
+      of digital number systems and number representation.
+    </p>
+
+    <div class="reference-item">
+      <h3>1. Python Software Foundation</h3>
+      <p>
+        Official Python documentation explaining numeric types and
+        how numbers are represented in programming.
+      </p>
+      <a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex"
+         target="_blank" rel="noopener noreferrer">
+        Explore Python Documentation →
+      </a>
+    </div>
+
+    <div class="reference-item">
+      <h3>2. Khan Academy</h3>
+      <p>
+        Educational lessons and practice activities that can help
+        students strengthen their mathematics skills.
+      </p>
+      <a href="https://www.khanacademy.org/math"
+         target="_blank" rel="noopener noreferrer">
+        Visit Khan Academy →
+      </a>
+    </div>
+
+    <div class="reference-item">
+      <h3>3. Prescribed Class IX DTI Textbook</h3>
+      <p>
+        Refer to the prescribed Digital Technology and Innovation
+        textbook for syllabus-specific explanations, examples and
+        number-system conversion exercises.
+      </p>
+      <p><em>
+        Add the textbook title, author and publication year when available.
+      </em></p>
+    </div>
+
+    <div class="reference-item">
+      <h3>4. DTI Learning Hub Lessons</h3>
+      <p>
+        Review the lessons on decimal, binary, octal and hexadecimal
+        number systems available on this website.
+      </p>
+      <a href="courses.html">Review Course Lessons →</a>
+    </div>
+
+    <p class="reference-note">
+      Note: These links provide supplementary learning materials.
+      The prescribed textbook and your teacher's instructions should
+      remain the main references for your Class IX syllabus.
+    </p>
+  </section>
+</main>
+
+
+</main>
+
+<footer>
+  DTI Learning Hub | Class 9 Digital Number System
+</footer>
+
+<script src="script.js"></script>
+<script>
+function checkAnswer() {
+  const answer = document.querySelector(
+    'input[name="practice"]:checked'
+  );
+  const feedback = document.getElementById("feedback");
+
+  if (!answer) {
+    feedback.textContent = "Please select an answer first.";
+  } else if (answer.value === "10") {
+    feedback.textContent = "Correct! 1010₂ = 10₁₀. Well done!";
+  } else {
+    feedback.textContent = "Not quite. Try adding 8 + 0 + 2 + 0.";
+  }
+}
+</script>
+
+</body>
+</html>

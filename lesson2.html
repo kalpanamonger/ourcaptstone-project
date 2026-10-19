@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn binary to decimal, octal and hexadecimal conversions in Class IX DTI.">
+  <title>Lesson 2: Binary Number System | DTI Learning Hub</title>
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    .lesson-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 20px 60px;
+      color: #49344f;
+    }
+
+    .lesson-hero {
+      background: linear-gradient(135deg, #f8dfce, #f9eee2);
+      padding: 38px 30px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .lesson-label {
+      color: #758f76;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      font-size: 0.8rem;
+    }
+
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin: 12px 0;
+    }
+
+    .lesson-card {
+      background: #fffaf3;
+      border: 1px solid #eadfd3;
+      border-radius: 16px;
+      padding: 25px;
+      margin: 25px 0;
+      box-shadow: 0 5px 18px rgba(70, 48, 73, 0.06);
+    }
+
+    .lesson-card h2 {
+      margin-top: 0;
+      color: #49344f;
+    }
+
+    .lesson-card h3 {
+      margin-top: 25px;
+    }
+
+    .lesson-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+
+    .lesson-page table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 480px;
+    }
+
+    .lesson-page th,
+    .lesson-page td {
+      border: 1px solid #dfd2c5;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .lesson-page th {
+      background: #e8eee5;
+    }
+
+    .lesson-highlight {
+      background: #edf2e9;
+      padding: 16px;
+      border-left: 5px solid #789579;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .lesson-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .lesson-step {
+      background: #f5e8d8;
+      padding: 18px;
+      border-radius: 12px;
+    }
+
+    .lesson-step strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .binary-visual {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .binary-bit {
+      min-width: 48px;
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 8px;
+      background: #e8eee5;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .binary-bit small {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: normal;
+      margin-top: 5px;
+    }
+
+    .lesson-button {
+      display: inline-block;
+      border: none;
+      background: #789579;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 6px 4px 6px 0;
+    }
+
+    .lesson-button:hover {
+      background: #5e795f;
+    }
+
+    .lesson-secondary {
+      background: #49344f;
+    }
+
+    .lesson-secondary:hover {
+      background: #36243b;
+    }
+
+    .converter-box {
+      background: #f4eadc;
+      padding: 20px;
+      border-radius: 14px;
+      margin-top: 20px;
+    }
+
+    .converter-box label,
+    .question label {
+      display: block;
+      font-weight: bold;
+      margin: 12px 0 6px;
+    }
+
+    .converter-box input,
+    .converter-box select,
+    .question select {
+      width: 100%;
+      max-width: 450px;
+      padding: 12px;
+      border: 1px solid #cbbbaa;
+      border-radius: 8px;
+      font: inherit;
+      background: white;
+      color: #49344f;
+    }
+
+    .converter-result {
+      margin-top: 16px;
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .converter-result strong {
+      font-size: 1.35rem;
+    }
+
+    .question {
+      padding: 18px 0;
+      border-bottom: 1px solid #eadfd3;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    .feedback {
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #287343;
+    }
+
+    .incorrect {
+      color: #a32f2f;
+    }
+
+    .lesson-progress {
+      font-weight: bold;
+      margin: 14px 0;
+    }
+
+    .lesson-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .lesson-page details {
+      margin: 16px 0;
+      padding: 14px;
+      background: #f5eee5;
+      border-radius: 8px;
+    }
+
+    .lesson-page summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .lesson-page {
+        padding: 20px 12px 40px;
+      }
+
+      .lesson-hero,
+      .lesson-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a href="../index.html" class="logo">DTI Learning Hub</a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+
+      <div class="dropdown">
+        <button type="button" class="dropdown-toggle" aria-expanded="false">
+          Course <span class="arrow">⌄</span>
+        </button>
+        <div class="dropdown-menu">
+          <a href="lesson1.html">Lesson 1: Data representation and number system</a>
+          <a href="lesson2.html" aria-current="page">Lesson 2: Binary number system to other number systems</a>
+          <a href="lesson3.html">Lesson 3: Octal number system to other number systems</a>
+          <a href="lesson4.html">Lesson 4: Decimal to other number systems</a>
+          <a href="lesson5.html">Lesson 5: Hexadecimal to other number systems</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button type="button" class="dropdown-toggle" aria-expanded="false">
+          Resources <span class="arrow">⌄</span>
+        </button>
+        <div class="dropdown-menu">
+          <a href="../student-resources.html">Student Resources</a>
+          <a href="../teacher-resources.html">Teacher Resources</a>
+        </div>
+      </div>
+
+      <a href="../video.html">Video</a>
+      <a href="../quiz.html">Quiz</a>
+
+      <div class="dropdown">
+        <button type="button" class="dropdown-toggle" aria-expanded="false">
+          More <span class="arrow">⌄</span>
+        </button>
+        <div class="dropdown-menu">
+          <a href="../real-life.html">Digital Number System in Real Life</a>
+          <a href="../practice.html">Practice Questions</a>
+          <a href="../about.html">About Us</a>
+          <a href="../contact.html">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="lesson-page">
+
+    <section class="lesson-hero">
+      <span class="lesson-label">CLASS IX · LESSON 02</span>
+      <h1>Binary Number System to Other Number Systems</h1>
+      <p>
+        Learn how to convert binary numbers into decimal, octal
+        and hexadecimal using simple steps, tables and practice.
+      </p>
+      <a href="#learning-objectives" class="lesson-button">Start Learning ↓</a>
+    </section>
+
+    <section class="lesson-card" id="learning-objectives">
+      <h2>1. Learning Objectives</h2>
+      <p>By the end of this lesson, you should be able to:</p>
+      <ul>
+        <li>Convert binary numbers into decimal numbers.</li>
+        <li>Convert binary numbers into octal numbers.</li>
+        <li>Convert binary numbers into hexadecimal numbers.</li>
+      </ul>
+    </section>
+
+    <section class="lesson-card">
+      <h2>2. What Is the Binary Number System?</h2>
+      <p>
+        The binary number system has a base of 2. It uses only two digits:
+        <strong>0 and 1</strong>. Each binary digit is called a bit.
+      </p>
+
+      <div class="lesson-steps">
+        <div class="lesson-step">
+          <strong>Binary number 1</strong>
+          <span>1010₂</span>
+        </div>
+        <div class="lesson-step">
+          <strong>Binary number 2</strong>
+          <span>1101₂</span>
+        </div>
+        <div class="lesson-step">
+          <strong>Binary number 3</strong>
+          <span>10011₂</span>
+        </div>
+      </div>
+
+      <div class="lesson-highlight">
+        Remember: digits 2–9 cannot be used in a binary number because
+        binary uses only 0 and 1.
+      </div>
+    </section>
+
+    <section class="lesson-card" id="binary-decimal">
+      <h2>3. Binary to Decimal Conversion</h2>
+      <p>To convert a binary number to decimal:</p>
+      <ol>
+        <li>Start from the right-hand side.</li>
+        <li>Write place values as powers of 2, beginning with 2⁰.</li>
+        <li>Multiply each binary digit by its place value.</li>
+        <li>Add the results.</li>
+      </ol>
+
+      <h3>Worked Example: Convert 1101₂ to decimal</h3>
+
+      <div class="binary-visual" aria-label="Binary digits 1 1 0 1">
+        <div class="binary-bit">1<small>8</small></div>
+        <div class="binary-bit">1<small>4</small></div>
+        <div class="binary-bit">0<small>2</small></div>
+        <div class="binary-bit">1<small>1</small></div>
+      </div>
+
+      <div class="lesson-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Binary digit</th>
+              <th>Place value</th>
+              <th>Multiplication</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>8</td><td>1 × 8</td><td>8</td></tr>
+            <tr><td>1</td><td>4</td><td>1 × 4</td><td>4</td></tr>
+            <tr><td>0</td><td>2</td><td>0 × 2</td><td>0</td></tr>
+            <tr><td>1</td><td>1</td><td>1 × 1</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-highlight">
+        8 + 4 + 0 + 1 = 13
+
+        <p><strong>Therefore, 1101₂ = 13₁₀.</strong></p>
+      </div>
+
+      <h3>Visualising the place values</h3>
+      <p>
+        The place values from right to left are powers of 2:
+        2⁰ = 1, 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, and so on.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="binary-octal">
+      <h2>4. Binary to Octal Conversion</h2>
+      <p>To convert binary to octal:</p>
+      <ol>
+        <li>Start grouping binary digits from the right.</li>
+        <li>Make groups of three bits.</li>
+        <li>Add leading zeros on the left if necessary.</li>
+        <li>Convert each group into an octal digit.</li>
+      </ol>
+
+      <h3>Worked Example: Convert 110101₂ to octal</h3>
+      <p>Step 1: Group the digits into sets of three.</p>
+
+      <div class="binary-visual">
+        <div class="binary-bit">1</div>
+        <div class="binary-bit">1</div>
+        <div class="binary-bit">0</div>
+        <div class="binary-bit">1</div>
+        <div class="binary-bit">0</div>
+        <div class="binary-bit">1</div>
+      </div>
+
+      <p>Groups: <strong>110 | 101</strong></p>
+
+      <div class="lesson-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Binary group</th><th>Calculation</th><th>Octal digit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>110₂</td><td>4 + 2 + 0</td><td>6</td></tr>
+            <tr><td>101₂</td><td>4 + 0 + 1</td><td>5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-highlight">
+        <strong>Answer: 110101₂ = 65₈</strong>
+      </div>
+
+      <p>
+        Remember: each group of three binary bits represents one octal digit.
+      </p>
+    </section>
+
+    <section class="lesson-card" id="binary-hexadecimal">
+      <h2>5. Binary to Hexadecimal Conversion</h2>
+      <p>To convert binary to hexadecimal:</p>
+      <ol>
+        <li>Group binary digits into sets of four, starting from the right.</li>
+        <li>Add leading zeros on the left if needed.</li>
+        <li>Convert each group into a hexadecimal digit.</li>
+      </ol>
+
+      <h3>Worked Example: Convert 11011110₂ to hexadecimal</h3>
+      <p>Step 1: Group the digits into sets of four.</p>
+      <p><strong>1101 | 1110</strong></p>
+
+      <div class="lesson-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Binary group</th><th>Decimal value</th><th>Hexadecimal digit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1101₂</td><td>13</td><td>D</td></tr>
+            <tr><td>1110₂</td><td>14</td><td>E</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="lesson-highlight">
+        <strong>Answer: 11011110₂ = DE₁₆</strong>
+      </div>
+
+      <h3>Hexadecimal letter values</h3>
+      <div class="lesson-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Hexadecimal symbol</th><th>Decimal value</th><th>Four-bit binary</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A</td><td>10</td><td>1010</td></tr>
+            <tr><td>B</td><td>11</td><td>1011</td></tr>
+            <tr><td>C</td><td>12</td><td>1100</td></tr>
+            <tr><td>D</td><td>13</td><td>1101</td></tr>
+            <tr><td>E</td><td>14</td><td>1110</td></tr>
+            <tr><td>F</td><td>15</td><td>1111</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="lesson-card" id="converter">
+      <h2>6. Interactive Binary Converter</h2>
+      <p>
+        Enter a binary number and select the number system to which
+        you want to convert it.
+      </p>
+
+      <div class="converter-box">
+        <label for="binaryInput">Enter a binary number</label>
+        <input
+          type="text"
+          id="binaryInput"
+          value="1101"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="Example: 1101"
+        >
+
+        <label for="conversionType">Convert to</label>
+        <select id="conversionType">
+          <option value="decimal">Decimal (base 10)</option>
+          <option value="octal">Octal (base 8)</option>
+          <option value="hexadecimal">Hexadecimal (base 16)</option>
+        </select>
+
+        <button type="button" class="lesson-button" id="convertButton">
+          Convert Number
+        </button>
+
+        <div class="converter-result" id="converterResult" aria-live="polite">
+          Your answer will appear here.
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-card" id="practice">
+      <h2>7. Practice Questions</h2>
+      <p>
+        Convert each binary number into the requested number system.
+        Select your answer and click Check My Answers.
+      </p>
+
+      <form id="practiceForm">
+        <div class="question">
+          <p>1. Convert 1010₂ to decimal.</p>
+          <label for="q1">Choose your answer</label>
+          <select id="q1" name="q1">
+            <option value="">Select an answer</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="5">5</option>
+          </select>
+          <div class="feedback" id="feedback1" aria-live="polite"></div>
+        </div>
+
+        <div class="question">
+          <p>2. Convert 1111₂ to decimal.</p>
+          <label for="q2">Choose your answer</label>
+          <select id="q2" name="q2">
+            <option value="">Select an answer</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+          </select>
+          <div class="feedback" id="feedback2" aria-live="polite"></div>
+        </div>
+
+        <div class="question">
+          <p>3. Convert 101101₂ to octal.</p>
+          <label for="q3">Choose your answer</label>
+          <select id="q3" name="q3">
+            <option value="">Select an answer</option>
+            <option value="45">45₈</option>
+            <option value="55">55₈</option>
+            <option value="65">65₈</option>
+            <option value="56">56₈</option>
+          </select>
+          <div class="feedback" id="feedback3" aria-live="polite"></div>
+        </div>
+
+        <div class="question">
+          <p>4. Convert 111001₂ to octal.</p>
+          <label for="q4">Choose your answer</label>
+          <select id="q4" name="q4">
+            <option value="">Select an answer</option>
+            <option value="61">61₈</option>
+            <option value="71">71₈</option>
+            <option value="72">72₈</option>
+            <option value="73">73₈</option>
+          </select>
+          <div class="feedback" id="feedback4" aria-live="polite"></div>
+        </div>
+
+        <div class="question">
+          <p>5. Convert 10101111₂ to hexadecimal.</p>
+          <label for="q5">Choose your answer</label>
+          <select id="q5" name="q5">
+            <option value="">Select an answer</option>
+            <option value="AF">AF₁₆</option>
+            <option value="AE">AE₁₆</option>
+            <option value="BF">BF₁₆</option>
+            <option value="AA">AA₁₆</option>
+          </select>
+          <div class="feedback" id="feedback5" aria-live="polite"></div>
+        </div>
+
+        <div class="question">
+          <p>6. Convert 11001010₂ to hexadecimal.</p>
+          <label for="q6">Choose your answer</label>
+          <select id="q6" name="q6">
+            <option value="">Select an answer</option>
+            <option value="CA">CA₁₆</option>
+            <option value="C8">C8₁₆</option>
+            <option value="CB">CB₁₆</option>
+            <option value="DA">DA₁₆</option>
+          </select>
+          <div class="feedback" id="feedback6" aria-live="polite"></div>
+        </div>
+
+        <button type="submit" class="lesson-button">
+          Check My Answers
+        </button>
+        <button type="button" class="lesson-button lesson-secondary" id="resetButton">
+          Try Again
+        </button>
+
+        <p class="lesson-progress" id="scoreResult" aria-live="polite"></p>
+      </form>
+
+      <details>
+        <summary>Show Answer Key</summary>
+        <ol>
+          <li>1010₂ = 10₁₀</li>
+          <li>1111₂ = 15₁₀</li>
+          <li>101101₂ = 55₈</li>
+          <li>111001₂ = 71₈</li>
+          <li>10101111₂ = AF₁₆</li>
+          <li>11001010₂ = CA₁₆</li>
+        </ol>
+      </details>
+    </section>
+
+    <section class="lesson-card">
+      <h2>8. Lesson Summary</h2>
+      <ul>
+        <li>Binary uses only 0 and 1.</li>
+        <li>For binary-to-decimal conversion, multiply each digit by its power-of-2 place value and add the results.</li>
+        <li>For binary-to-octal conversion, group bits in threes from the right.</li>
+        <li>For binary-to-hexadecimal conversion, group bits in fours from the right.</li>
+        <li>Add leading zeros to the left when needed to complete a group.</li>
+      </ul>
+    </section>
+
+    <div class="lesson-footer-nav">
+      <a href="lesson1.html" class="lesson-button lesson-secondary">
+        ← Previous Lesson
+      </a>
+      <a href="lesson3.html" class="lesson-button">
+        Next Lesson →
+      </a>
+      <a href="../index.html" class="lesson-button lesson-secondary">
+        Home
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    DTI Learning Hub | Class 9 Digital Number System
+  </footer>
+
+  <script src="../script.js"></script>
+
+  <script>
+    // Interactive binary converter
+    const binaryInput = document.getElementById("binaryInput");
+    const conversionType = document.getElementById("conversionType");
+    const converterResult = document.getElementById("converterResult");
+
+    function convertBinary() {
+      const binary = binaryInput.value.trim();
+
+      if (!/^[01]+$/.test(binary)) {
+        converterResult.textContent =
+          "Please enter a valid binary number using only 0 and 1.";
+        return;
+      }
+
+      const decimalValue = parseInt(binary, 2);
+      let answer;
+      let baseLabel;
+
+      if (conversionType.value === "decimal") {
+        answer = decimalValue.toString(10);
+        baseLabel = "₁₀";
+      } else if (conversionType.value === "octal") {
+        answer = decimalValue.toString(8);
+        baseLabel = "₈";
+      } else {
+        answer = decimalValue.toString(16).toUpperCase();
+        baseLabel = "₁₆";
+      }
+
+      converterResult.replaceChildren();
+
+      const line = document.createElement("p");
+      line.textContent = "Conversion result:";
+
+      const answerLine = document.createElement("p");
+      const strong = document.createElement("strong");
+      strong.textContent = answer + baseLabel;
+      answerLine.appendChild(strong);
+
+      const explanation = document.createElement("p");
+      explanation.textContent = binary + "₂ = " + answer + baseLabel;
+
+      converterResult.append(line, answerLine, explanation);
+    }
+
+    document.getElementById("convertButton").addEventListener("click", convertBinary);
+    binaryInput.addEventListener("input", convertBinary);
+    conversionType.addEventListener("change", convertBinary);
+    convertBinary();
+
+    // Practice quiz answer checking
+    const correctAnswers = {
+      q1: "10",
+      q2: "15",
+      q3: "55",
+      q4: "71",
+      q5: "AF",
+      q6: "CA"
+    };
+
+    document.getElementById("practiceForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let score = 0;
+      let unanswered = 0;
+      const total = Object.keys(correctAnswers).length;
+
+      for (let i = 1; i <= total; i++) {
+        const questionId = "q" + i;
+        const selected = document.getElementById(questionId).value;
+        const feedback = document.getElementById("feedback" + i);
+
+        feedback.classList.remove("correct", "incorrect");
+
+        if (!selected) {
+          unanswered++;
+          feedback.textContent = "Please select an answer.";
+          feedback.classList.add("incorrect");
+        } else if (selected === correctAnswers[questionId]) {
+          score++;
+          feedback.textContent = "Correct! Well done.";
+          feedback.classList.add("correct");
+        } else {
+          feedback.textContent = "Not quite. Review the worked examples and try again.";
+          feedback.classList.add("incorrect");
+        }
+      }
+
+      const scoreResult = document.getElementById("scoreResult");
+      scoreResult.textContent =
+        "Your score: " + score + " out of " + total + "." +
+        (unanswered ? " You left " + unanswered + " question(s) unanswered." : "");
+
+      scoreResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+
+    document.getElementById("resetButton").addEventListener("click", function() {
+      document.getElementById("practiceForm").reset();
+
+      for (let i = 1; i <= 6; i++) {
+        const feedback = document.getElementById("feedback" + i);
+        feedback.textContent = "";
+        feedback.classList.remove("correct", "incorrect");
+      }
+
+      document.getElementById("scoreResult").textContent = "";
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | DTI Learning Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contact-container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 25px;
+            color: var(--text, #352c3a);
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .contact-heading h1 {
+            color: var(--plum, #493653);
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-heading p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .contact-card {
+            background: var(--cream, #fff8ec);
+            border: 2px solid var(--gold, #e9bd69);
+            border-radius: 18px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(73, 54, 83, 0.12);
+        }
+
+        .contact-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .contact-card h2 {
+            color: var(--plum, #493653);
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-card a {
+            color: var(--plum, #493653);
+            font-weight: bold;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-card a:hover {
+            color: var(--coral, #e98270);
+            text-decoration: underline;
+        }
+
+        .contact-note {
+            background: var(--green, #789477);
+            color: white;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .contact-note h2 {
+            margin-top: 0;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 24px;
+            background: var(--coral, #e98270);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .back-home:hover {
+            background: var(--plum, #493653);
+        }
+
+        .contact-footer {
+            text-align: center;
+            margin-top: 35px;
+            padding: 20px;
+            color: var(--text, #352c3a);
+        }
+
+        @media (max-width: 600px) {
+            .contact-container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .contact-heading h1 {
+                font-size: 2rem;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="contact-container">
+
+        <section class="contact-heading">
+            <h1>📩 Contact Us</h1>
+            <p>
+                Welcome to DTI Learning Hub! We are happy to connect
+                with students, teachers, and anyone interested in
+                learning about Digital Number Systems.
+            </p>
+            <p>
+                If you have questions, suggestions, or feedback
+                about our learning materials, please reach out to us.
+            </p>
+        </section>
+
+        <section class="contact-cards">
+
+            <!-- Email Contact -->
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h2>Email Us</h2>
+                <p>For questions and learning support, email us at:</p>
+                <a href="mailto:08230134.sce@rub.edu.br">
+                    08230134.sce@rub.edu.br
+                </a>
+            </div>
+
+            <!-- Phone Contact -->
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h2>Call Us</h2>
+                <p>Feel free to contact us by phone:</p>
+                <a href="tel:+97517774093">
+                    17774093
+                </a>
+            </div>
+
+        </section>
+
+        <section class="contact-note">
+            <h2>💡 We Would Love to Hear From You!</h2>
+            <p>
+                Your feedback helps us improve our website and make
+                learning Digital Number Systems more interesting,
+                interactive, and enjoyable.
+            </p>
+            <p>
+                Thank you for visiting DTI Learning Hub.
+                Happy Learning! 🌟
+            </p>
+        </section>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-home">
+                ← Back to Home
+            </a>
+        </div>
+
+        <footer class="contact-footer">
+            <p>© 2026 DTI Learning Hub | Digital Number Systems</p>
+            <p>Learn • Explore • Practise • Discover</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

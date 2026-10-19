@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3 | Octal Number System</title>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    :root {
+      --lesson-primary: #493653;
+      --lesson-light: #eff6ff;
+      --lesson-dark: #1e3a8a;
+      --lesson-border: #dbe5f2;
+      --lesson-text: #263449;
+    }
+
+    .lesson-container {
+      max-width: 1050px;
+      margin: 30px auto;
+      padding: 20px;
+      color: var(--lesson-text);
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    .lesson-hero {
+      padding: 35px 25px;
+      border-radius: 18px;
+      color: white;
+      background: linear-gradient(135deg, #e4d9b7, #6366f1);
+      margin-bottom: 25px;
+    }
+
+    .lesson-hero h1 {
+      color: white;
+      margin-top: 0;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+    }
+
+    .lesson-hero p {
+      margin-bottom: 0;
+    }
+
+    .lesson-section {
+      background: white;
+      border: 1px solid var(--lesson-border);
+      border-radius: 14px;
+      padding: 25px;
+      margin: 22px 0;
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.05);
+    }
+
+    .lesson-section h2 {
+      color: var(--lesson-dark);
+      margin-top: 0;
+      border-bottom: 2px solid var(--lesson-light);
+      padding-bottom: 10px;
+    }
+
+    .lesson-section h3 {
+      color: var(--lesson-primary);
+    }
+
+    .number-highlight {
+      display: inline-block;
+      background: var(--lesson-light);
+      color: var(--lesson-dark);
+      padding: 8px 13px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 5px 3px;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border-left: 5px solid var(--lesson-primary);
+      padding: 15px 18px;
+      margin: 15px 0;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .lesson-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 280px;
+    }
+
+    .lesson-table th,
+    .lesson-table td {
+      border: 1px solid var(--lesson-border);
+      padding: 11px;
+      text-align: center;
+    }
+
+    .lesson-table th {
+      background: var(--lesson-light);
+      color: var(--lesson-dark);
+    }
+
+    .lesson-table tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .steps {
+      padding-left: 24px;
+    }
+
+    .steps li {
+      margin: 8px 0;
+    }
+
+    .converter {
+      background: #f8fafc;
+      border: 2px solid var(--lesson-border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .converter label {
+      display: block;
+      font-weight: bold;
+      margin: 12px 0 5px;
+    }
+
+    .converter input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .lesson-button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin: 10px 5px 5px 0;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      background: var(--lesson-primary);
+      color: white;
+    }
+
+    .lesson-button:hover {
+      filter: brightness(0.9);
+    }
+
+    .secondary-button {
+      background: #475569;
+    }
+
+    .result-box {
+      background: white;
+      border: 1px solid var(--lesson-border);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .result-row {
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .question {
+      border: 1px solid var(--lesson-border);
+      padding: 17px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .question p {
+      margin-top: 0;
+      font-weight: bold;
+    }
+
+    .question label {
+      display: block;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .correct {
+      color: #15803d;
+    }
+
+    .incorrect {
+      color: #b91c1c;
+    }
+
+    .lesson-navigation {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .lesson-navigation a {
+      text-decoration: none;
+      display: inline-block;
+      background: var(--lesson-primary);
+      color: white;
+      padding: 12px 17px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .lesson-navigation a:hover {
+      background: var(--lesson-dark);
+    }
+
+    .lesson-note {
+      background: #fefce8;
+      border-left: 5px solid #eab308;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 600px) {
+      .lesson-container {
+        padding: 12px;
+        margin: 15px auto;
+      }
+
+      .lesson-section {
+        padding: 17px;
+      }
+
+      .lesson-hero {
+        padding: 25px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">DTI Learning Hub</div>
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#">Course ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="lesson1.html">Lesson 1</a></li>
+          <li><a href="lesson2.html">Lesson 2</a></li>
+          <li><a href="lesson3.html" aria-current="page">Lesson 3</a></li>
+          <li><a href="lesson4.html">Lesson 4</a></li>
+          <li><a href="lesson5.html">Lesson 5</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Resources ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../student-resources.html">Student Resources</a></li>
+          <li><a href="../teacher-resources.html">Teacher Resources</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../video.html">Videos</a></li>
+      <li><a href="../quiz.html">Quiz</a></li>
+
+      <li class="dropdown">
+        <a href="#">More ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../practice.html">Practice</a></li>
+          <li><a href="../real-life.html">Real-Life Applications</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="lesson-container">
+
+    <!-- Lesson heading -->
+    <header class="lesson-hero">
+      <p>CLASS IX · DIGITAL TECHNOLOGY AND INNOVATION</p>
+      <h1>Lesson 3: Octal Number System to Other Number Systems</h1>
+      <p>Learn how to convert octal numbers into binary, decimal and hexadecimal.</p>
+    </header>
+
+    <!-- Learning objectives -->
+    <section class="lesson-section">
+      <h2>1. Learning Objectives</h2>
+      <p>By the end of this lesson, students should be able to:</p>
+      <ul>
+        <li>Explain the octal number system.</li>
+        <li>Convert octal numbers to binary.</li>
+        <li>Convert octal numbers to decimal.</li>
+        <li>Convert octal numbers to hexadecimal.</li>
+      </ul>
+    </section>
+
+    <!-- Introduction -->
+    <section class="lesson-section">
+      <h2>2. What Is the Octal Number System?</h2>
+
+      <p>
+        The octal number system is a number system with a base of
+        <strong>8</strong>. It uses eight digits, from 0 to 7.
+      </p>
+
+      <div>
+        <span class="number-highlight">Base = 8</span>
+        <span class="number-highlight">Digits = 0, 1, 2, 3, 4, 5, 6, 7</span>
+      </div>
+
+      <p>Examples of octal numbers:</p>
+      <div class="example-box">
+        <strong>25₈, 147₈ and 706₈</strong>
+      </div>
+
+      <div class="lesson-note">
+        <strong>Remember:</strong> The digits 8 and 9 are not allowed in the
+        octal number system because its base is 8.
+      </div>
+    </section>
+
+    <!-- Octal to binary -->
+    <section class="lesson-section">
+      <h2>3. Converting Octal to Binary</h2>
+
+      <p>
+        To convert octal to binary, replace each octal digit with its
+        equivalent three-bit binary number.
+      </p>
+
+      <h3>Octal-to-Binary Conversion Table</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Octal Digit</th>
+              <th>Binary Equivalent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>000</td></tr>
+            <tr><td>1</td><td>001</td></tr>
+            <tr><td>2</td><td>010</td></tr>
+            <tr><td>3</td><td>011</td></tr>
+            <tr><td>4</td><td>100</td></tr>
+            <tr><td>5</td><td>101</td></tr>
+            <tr><td>6</td><td>110</td></tr>
+            <tr><td>7</td><td>111</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Worked Example: Convert 57₈ to Binary</h3>
+
+      <div class="example-box">
+        Step 1: Convert each octal digit separately.
+        <p>5₈ = 101₂</p>
+        <p>7₈ = 111₂</p>
+
+        Step 2: Join the binary groups.
+        <p><strong>57₈ = 101111₂</strong></p>
+      </div>
+
+      <p>
+        Each octal digit becomes exactly three binary bits. You can remove
+        leading zeros from the final binary number.
+      </p>
+    </section>
+
+    <!-- Octal to decimal -->
+    <section class="lesson-section">
+      <h2>4. Converting Octal to Decimal</h2>
+
+      <p>
+        To convert octal to decimal, multiply each digit by its place value.
+        The place values are powers of 8, starting from 8⁰ on the right.
+      </p>
+
+      <ol class="steps">
+        <li>Start with the rightmost digit.</li>
+        <li>Assign place values 8⁰, 8¹, 8² and so on.</li>
+        <li>Multiply each digit by its place value.</li>
+        <li>Add all the results.</li>
+      </ol>
+
+      <h3>Worked Example: Convert 157₈ to Decimal</h3>
+
+      <div class="example-box">
+        <p>
+          157₈ = (1 × 8²) + (5 × 8¹) + (7 × 8⁰)
+        </p>
+        <p>
+          = (1 × 64) + (5 × 8) + (7 × 1)
+        </p>
+        <p>= 64 + 40 + 7</p>
+        <p><strong>157₈ = 111₁₀</strong></p>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Digit</th>
+              <th>Place Value</th>
+              <th>Calculation</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>8² = 64</td><td>1 × 64</td><td>64</td></tr>
+            <tr><td>5</td><td>8¹ = 8</td><td>5 × 8</td><td>40</td></tr>
+            <tr><td>7</td><td>8⁰ = 1</td><td>7 × 1</td><td>7</td></tr>
+            <tr><th colspan="3">Total</th><th>111</th></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Octal to hexadecimal -->
+    <section class="lesson-section">
+      <h2>5. Converting Octal to Hexadecimal</h2>
+
+      <p>
+        To convert octal to hexadecimal, first convert the octal number to
+        binary. Then group the binary digits into groups of four, starting
+        from the right. Add leading zeros if needed.
+      </p>
+
+      <h3>Worked Example: Convert 725₈ to Hexadecimal</h3>
+
+      <div class="example-box">
+        <p><strong>Step 1: Convert octal to binary.</strong></p>
+        <p>7 = 111, 2 = 010, 5 = 101</p>
+        <p>725₈ = 111010101₂</p>
+
+        <p><strong>Step 2: Group the binary digits into fours.</strong></p>
+        <p>0001 | 1101 | 0101</p>
+
+        <p><strong>Step 3: Convert each group to hexadecimal.</strong></p>
+        <p>0001 = 1, 1101 = D, 0101 = 5</p>
+
+        <p><strong>Final answer: 725₈ = 1D5₁₆</strong></p>
+      </div>
+
+      <h3>Useful Hexadecimal Values</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Binary</th>
+              <th>Hexadecimal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0000</td><td>0</td></tr>
+            <tr><td>0001</td><td>1</td></tr>
+            <tr><td>1010</td><td>A</td></tr>
+            <tr><td>1011</td><td>B</td></tr>
+            <tr><td>1100</td><td>C</td></tr>
+            <tr><td>1101</td><td>D</td></tr>
+            <tr><td>1110</td><td>E</td></tr>
+            <tr><td>1111</td><td>F</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        In hexadecimal, A = 10, B = 11, C = 12, D = 13, E = 14 and F = 15.
+      </p>
+    </section>
+
+    <!-- Interactive converter -->
+    <section class="lesson-section">
+      <h2>6. Try It Yourself: Octal Converter</h2>
+
+      <p>
+        Enter an octal number using digits from 0 to 7. The converter will
+        show its binary, decimal and hexadecimal equivalents.
+      </p>
+
+      <div class="converter">
+        <label for="octalInput">Enter an octal number:</label>
+        <input
+          type="text"
+          id="octalInput"
+          placeholder="Example: 157"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-describedby="converterMessage"
+        >
+
+        <button type="button" class="lesson-button" onclick="convertOctal()">
+          Convert Number
+        </button>
+
+        <button type="button" class="lesson-button secondary-button"
+          onclick="resetConverter()">
+          Reset
+        </button>
+
+        <div id="converterMessage" role="status" aria-live="polite"></div>
+
+        <div class="result-box" id="converterResults" hidden>
+          <div class="result-row">
+            <strong>Octal:</strong>
+            <span id="octalResult"></span>
+          </div>
+          <div class="result-row">
+            <strong>Binary:</strong>
+            <span id="binaryResult"></span>
+          </div>
+          <div class="result-row">
+            <strong>Decimal:</strong>
+            <span id="decimalResult"></span>
+          </div>
+          <div class="result-row">
+            <strong>Hexadecimal:</strong>
+            <span id="hexResult"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice questions -->
+    <section class="lesson-section">
+      <h2>7. Practice Questions</h2>
+
+      <p>
+        Select one answer for each question. Click
+        <strong>Check My Answers</strong> to see your score and feedback.
+      </p>
+
+      <form id="practiceForm">
+
+        <div class="question" data-answer="b">
+          <p>1. Convert 34₈ to binary.</p>
+          <label><input type="radio" name="q1" value="a"> 11010₂</label>
+          <label><input type="radio" name="q1" value="b"> 11100₂</label>
+          <label><input type="radio" name="q1" value="c"> 10010₂</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>2. Convert 126₈ to binary.</p>
+          <label><input type="radio" name="q2" value="a"> 1101010₂</label>
+          <label><input type="radio" name="q2" value="b"> 1010010₂</label>
+          <label><input type="radio" name="q2" value="c"> 1010110₂</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>3. Convert 25₈ to decimal.</p>
+          <label><input type="radio" name="q3" value="a"> 21₁₀</label>
+          <label><input type="radio" name="q3" value="b"> 25₁₀</label>
+          <label><input type="radio" name="q3" value="c"> 17₁₀</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="b">
+          <p>4. Convert 347₈ to decimal.</p>
+          <label><input type="radio" name="q4" value="a"> 227₁₀</label>
+          <label><input type="radio" name="q4" value="b"> 231₁₀</label>
+          <label><input type="radio" name="q4" value="c"> 247₁₀</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>5. Convert 17₈ to hexadecimal.</p>
+          <label><input type="radio" name="q5" value="a"> 17₁₆</label>
+          <label><input type="radio" name="q5" value="b"> 10₁₆</label>
+          <label><input type="radio" name="q5" value="c"> F₁₆</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>6. Convert 64₈ to hexadecimal.</p>
+          <label><input type="radio" name="q6" value="a"> 34₁₆</label>
+          <label><input type="radio" name="q6" value="b"> 46₁₆</label>
+          <label><input type="radio" name="q6" value="c"> 40₁₆</label>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <button type="button" class="lesson-button" onclick="checkAnswers()">
+          Check My Answers
+        </button>
+
+        <button type="button" class="lesson-button secondary-button"
+          onclick="resetQuiz()">
+          Try Again
+        </button>
+
+        <div id="quizScore" class="result-box" role="status"
+          aria-live="polite" hidden></div>
+      </form>
+    </section>
+
+    <!-- Summary -->
+    <section class="lesson-section">
+      <h2>8. Lesson Summary</h2>
+
+      <ul>
+        <li>The octal number system has base 8 and uses digits 0–7.</li>
+        <li>To convert octal to binary, replace each digit with three bits.</li>
+        <li>To convert octal to decimal, use powers of 8 and add the results.</li>
+        <li>To convert octal to hexadecimal, convert to binary and group the bits in fours.</li>
+      </ul>
+
+      <div class="example-box">
+        <strong>Remember:</strong> Practise the conversion steps carefully.
+        Always check that an octal number contains only digits from 0 to 7.
+      </div>
+    </section>
+
+    <!-- Lesson navigation -->
+    <div class="lesson-navigation">
+      <a href="lesson2.html">← Previous: Lesson 2</a>
+      <a href="lesson4.html">Next: Lesson 4 →</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>DTI Learning Hub | Class 9 Digital Number System</p>
+  </footer>
+
+  <script src="../script.js"></script>
+
+  <script>
+    // Octal converter
+    function convertOctal() {
+      const input = document.getElementById("octalInput")
+        .value.trim();
+      const message = document.getElementById("converterMessage");
+      const results = document.getElementById("converterResults");
+
+      if (!input) {
+        message.textContent = "Please enter an octal number.";
+        message.className = "feedback incorrect";
+        results.hidden = true;
+        return;
+      }
+
+      if (!/^[0-7]+$/.test(input)) {
+        message.textContent =
+          "Invalid octal number. Use digits from 0 to 7 only.";
+        message.className = "feedback incorrect";
+        results.hidden = true;
+        return;
+      }
+
+      const decimal = parseInt(input, 8);
+
+      if (!Number.isSafeInteger(decimal)) {
+        message.textContent =
+          "This number is too large for this converter.";
+        message.className = "feedback incorrect";
+        results.hidden = true;
+        return;
+      }
+
+      document.getElementById("octalResult").textContent =
+        input + "₈";
+
+      document.getElementById("binaryResult").textContent =
+        decimal.toString(2) + "₂";
+
+      document.getElementById("decimalResult").textContent =
+        decimal + "₁₀";
+
+      document.getElementById("hexResult").textContent =
+        decimal.toString(16).toUpperCase() + "₁₆";
+
+      message.textContent = "Conversion completed successfully!";
+      message.className = "feedback correct";
+      results.hidden = false;
+    }
+
+    function resetConverter() {
+      document.getElementById("octalInput").value = "";
+      document.getElementById("converterMessage").textContent = "";
+      document.getElementById("converterResults").hidden = true;
+    }
+
+    // Practice quiz
+    function checkAnswers() {
+      const questions = document.querySelectorAll(
+        "#practiceForm .question"
+      );
+
+      let score = 0;
+      let unanswered = 0;
+
+      questions.forEach(function(question) {
+        const correctAnswer = question.dataset.answer;
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
+        const feedback = question.querySelector(".feedback");
+
+        if (!selected) {
+          unanswered++;
+          feedback.textContent = "Please select an answer.";
+          feedback.className = "feedback incorrect";
+          return;
+        }
+
+        if (selected.value === correctAnswer) {
+          score++;
+          feedback.textContent = "Correct! Well done.";
+          feedback.className = "feedback correct";
+        } else {
+          const correctOption = question.querySelector(
+            'input[value="' + correctAnswer + '"]'
+          );
+
+          const correctLabel = correctOption.parentElement
+            .textContent.trim();
+
+          feedback.textContent =
+            "Not quite. Correct answer: " + correctLabel;
+          feedback.className = "feedback incorrect";
+        }
+      });
+
+      const scoreBox = document.getElementById("quizScore");
+      scoreBox.hidden = false;
+      scoreBox.innerHTML =
+        "<strong>Your score: " + score + " / " +
+        questions.length + "</strong>" +
+        (unanswered
+          ? "<p>You have " + unanswered +
+            " unanswered question(s).</p>"
+          : "<p>You have answered all six questions.</p>");
+    }
+
+    function resetQuiz() {
+      document.getElementById("practiceForm").reset();
+
+      document.querySelectorAll(
+        "#practiceForm .feedback"
+      ).forEach(function(feedback) {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      });
+
+      document.getElementById("quizScore").hidden = true;
+    }
+
+    // Allow Enter to convert the number.
+    document.getElementById("octalInput")
+      .addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          convertOctal();
+        }
+      });
+  </script>
+
+</body>
+</html>

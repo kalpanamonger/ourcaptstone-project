@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lesson 4 | Decimal Number System</title>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --dark: #1e3a8a;
+      --light: #eff6ff;
+      --border: #dbe5f2;
+      --text: #263449;
+    }
+
+    .lesson-container {
+      max-width: 1050px;
+      margin: 30px auto;
+      padding: 20px;
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    .lesson-hero {
+      padding: 35px 25px;
+      border-radius: 18px;
+      color: white;
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      margin-bottom: 25px;
+    }
+
+    .lesson-hero h1 {
+      color: white;
+      margin-top: 0;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+    }
+
+    .lesson-section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 25px;
+      margin: 22px 0;
+      box-shadow: 0 4px 15px rgba(30, 58, 138, 0.05);
+    }
+
+    .lesson-section h2 {
+      color: var(--dark);
+      margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--light);
+    }
+
+    .lesson-section h3 {
+      color: var(--primary);
+    }
+
+    .highlight {
+      display: inline-block;
+      background: var(--light);
+      color: var(--dark);
+      padding: 8px 13px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 5px 3px;
+    }
+
+    .example-box {
+      background: #f8fafc;
+      border-left: 5px solid var(--primary);
+      padding: 15px 18px;
+      margin: 15px 0;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .lesson-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 280px;
+    }
+
+    .lesson-table th,
+    .lesson-table td {
+      border: 1px solid var(--border);
+      padding: 11px;
+      text-align: center;
+    }
+
+    .lesson-table th {
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    .lesson-table tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .steps {
+      padding-left: 24px;
+    }
+
+    .steps li {
+      margin: 8px 0;
+    }
+
+    .converter {
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .converter label {
+      display: block;
+      font-weight: bold;
+      margin: 12px 0 5px;
+    }
+
+    .converter input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .lesson-button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin: 10px 5px 5px 0;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      background: var(--primary);
+      color: white;
+    }
+
+    .lesson-button:hover {
+      filter: brightness(0.9);
+    }
+
+    .secondary-button {
+      background: #475569;
+    }
+
+    .result-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .result-row {
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .result-row:last-child {
+      border-bottom: none;
+    }
+
+    .question {
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .question p {
+      margin-top: 0;
+      font-weight: bold;
+    }
+
+    .question label {
+      display: block;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+
+    .feedback {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .correct {
+      color: #15803d;
+    }
+
+    .incorrect {
+      color: #b91c1c;
+    }
+
+    .lesson-note {
+      background: #fefce8;
+      border-left: 5px solid #eab308;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .lesson-navigation {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .lesson-navigation a {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 12px 17px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .lesson-navigation a:hover {
+      background: var(--dark);
+    }
+
+    @media (max-width: 600px) {
+      .lesson-container {
+        padding: 12px;
+        margin: 15px auto;
+      }
+
+      .lesson-section {
+        padding: 17px;
+      }
+
+      .lesson-hero {
+        padding: 25px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">DTI Learning Hub</div>
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+
+      <li class="dropdown">
+        <a href="#">Course ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="lesson1.html">Lesson 1</a></li>
+          <li><a href="lesson2.html">Lesson 2</a></li>
+          <li><a href="lesson3.html">Lesson 3</a></li>
+          <li><a href="lesson4.html" aria-current="page">Lesson 4</a></li>
+          <li><a href="lesson5.html">Lesson 5</a></li>
+        </ul>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">Resources ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../student-resources.html">Student Resources</a></li>
+          <li><a href="../teacher-resources.html">Teacher Resources</a></li>
+        </ul>
+      </li>
+
+      <li><a href="../video.html">Videos</a></li>
+      <li><a href="../quiz.html">Quiz</a></li>
+
+      <li class="dropdown">
+        <a href="#">More ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="../practice.html">Practice</a></li>
+          <li><a href="../real-life.html">Real-Life Applications</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="lesson-container">
+
+    <header class="lesson-hero">
+      <p>CLASS IX · DIGITAL TECHNOLOGY AND INNOVATION</p>
+      <h1>Lesson 4: Decimal Number System to Other Number Systems</h1>
+      <p>
+        Learn how to convert decimal numbers into binary, octal
+        and hexadecimal.
+      </p>
+    </header>
+
+    <!-- Learning objectives -->
+    <section class="lesson-section">
+      <h2>1. Learning Objectives</h2>
+
+      <p>By the end of this lesson, students should be able to:</p>
+
+      <ul>
+        <li>Explain the decimal number system.</li>
+        <li>Convert decimal numbers to binary.</li>
+        <li>Convert decimal numbers to octal.</li>
+        <li>Convert decimal numbers to hexadecimal.</li>
+      </ul>
+    </section>
+
+    <!-- Decimal introduction -->
+    <section class="lesson-section">
+      <h2>2. What Is the Decimal Number System?</h2>
+
+      <p>
+        The decimal number system is a number system with a base of
+        <strong>10</strong>. It uses ten digits, from 0 to 9.
+        It is the number system we commonly use in everyday life.
+      </p>
+
+      <div>
+        <span class="highlight">Base = 10</span>
+        <span class="highlight">Digits = 0–9</span>
+      </div>
+
+      <h3>Examples of Decimal Numbers</h3>
+
+      <div class="example-box">
+        25₁₀, 147₁₀ and 202₁₀
+      </div>
+
+      <h3>Where Do We Use Decimal Numbers?</h3>
+
+      <ul>
+        <li>Counting money</li>
+        <li>Measuring distance</li>
+        <li>Calculating marks</li>
+        <li>Counting objects in everyday life</li>
+      </ul>
+    </section>
+
+    <!-- Decimal to binary -->
+    <section class="lesson-section">
+      <h2>3. Converting Decimal to Binary</h2>
+
+      <p>
+        To convert a decimal number to binary, repeatedly divide the
+        number by 2 and record each remainder.
+      </p>
+
+      <ol class="steps">
+        <li>Divide the decimal number by 2.</li>
+        <li>Record the remainder (0 or 1).</li>
+        <li>Divide the quotient by 2 again.</li>
+        <li>Continue until the quotient becomes 0.</li>
+        <li>Read the remainders from bottom to top.</li>
+      </ol>
+
+      <h3>Worked Example: Convert 13₁₀ to Binary</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Division</th>
+              <th>Quotient</th>
+              <th>Remainder</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>13 ÷ 2</td><td>6</td><td>1</td></tr>
+            <tr><td>6 ÷ 2</td><td>3</td><td>0</td></tr>
+            <tr><td>3 ÷ 2</td><td>1</td><td>1</td></tr>
+            <tr><td>1 ÷ 2</td><td>0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-box">
+        Read the remainders from bottom to top: 1101.
+
+        <p><strong>Therefore, 13₁₀ = 1101₂</strong></p>
+      </div>
+    </section>
+
+    <!-- Decimal to octal -->
+    <section class="lesson-section">
+      <h2>4. Converting Decimal to Octal</h2>
+
+      <p>
+        To convert decimal to octal, follow the same repeated-division
+        method, but divide by <strong>8 instead of 2</strong>.
+      </p>
+
+      <ol class="steps">
+        <li>Divide the decimal number by 8.</li>
+        <li>Record the remainder.</li>
+        <li>Continue dividing the quotient by 8 until it becomes 0.</li>
+        <li>Read the remainders from bottom to top.</li>
+      </ol>
+
+      <h3>Worked Example: Convert 83₁₀ to Octal</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Division</th>
+              <th>Quotient</th>
+              <th>Remainder</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>83 ÷ 8</td><td>10</td><td>3</td></tr>
+            <tr><td>10 ÷ 8</td><td>1</td><td>2</td></tr>
+            <tr><td>1 ÷ 8</td><td>0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-box">
+        Read the remainders from bottom to top: 123.
+
+        <p><strong>Therefore, 83₁₀ = 123₈</strong></p>
+      </div>
+    </section>
+
+    <!-- Decimal to hexadecimal -->
+    <section class="lesson-section">
+      <h2>5. Converting Decimal to Hexadecimal</h2>
+
+      <p>
+        To convert a decimal number to hexadecimal, repeatedly divide
+        the number by <strong>16</strong>. Record the remainders and
+        read them from bottom to top.
+      </p>
+
+      <div class="lesson-note">
+        <strong>Remember:</strong> Hexadecimal remainders from 10 to 15
+        are represented by the letters A to F.
+      </div>
+
+      <h3>Hexadecimal Reference Table</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Decimal Value</th>
+              <th>Hexadecimal Symbol</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>10</td><td>A</td></tr>
+            <tr><td>11</td><td>B</td></tr>
+            <tr><td>12</td><td>C</td></tr>
+            <tr><td>13</td><td>D</td></tr>
+            <tr><td>14</td><td>E</td></tr>
+            <tr><td>15</td><td>F</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Worked Example: Convert 254₁₀ to Hexadecimal</h3>
+
+      <div class="table-wrapper">
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Division</th>
+              <th>Quotient</th>
+              <th>Remainder</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>254 ÷ 16</td><td>15</td><td>14</td></tr>
+            <tr><td>15 ÷ 16</td><td>0</td><td>15</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-box">
+        <p>Step 1: Convert the remainders into hexadecimal symbols.</p>
+        <p>14 = E</p>
+        <p>15 = F</p>
+
+        <p>Step 2: Read the symbols from bottom to top.</p>
+        <p><strong>Therefore, 254₁₀ = FE₁₆</strong></p>
+      </div>
+    </section>
+
+    <!-- Interactive converter -->
+    <section class="lesson-section">
+      <h2>6. Try It Yourself: Decimal Converter</h2>
+
+      <p>
+        Enter a whole decimal number to see its binary, octal and
+        hexadecimal equivalents.
+      </p>
+
+      <div class="converter">
+        <label for="decimalInput">Enter a decimal number:</label>
+
+        <input
+          type="text"
+          id="decimalInput"
+          inputmode="numeric"
+          placeholder="Example: 254"
+          autocomplete="off"
+          aria-describedby="converterMessage"
+        >
+
+        <button
+          type="button"
+          class="lesson-button"
+          onclick="convertDecimal()"
+        >
+          Convert Number
+        </button>
+
+        <button
+          type="button"
+          class="lesson-button secondary-button"
+          onclick="resetConverter()"
+        >
+          Reset
+        </button>
+
+        <div id="converterMessage" role="status" aria-live="polite"></div>
+
+        <div class="result-box" id="converterResults" hidden>
+          <div class="result-row">
+            <strong>Decimal:</strong>
+            <span id="decimalResult"></span>
+          </div>
+
+          <div class="result-row">
+            <strong>Binary:</strong>
+            <span id="binaryResult"></span>
+          </div>
+
+          <div class="result-row">
+            <strong>Octal:</strong>
+            <span id="octalResult"></span>
+          </div>
+
+          <div class="result-row">
+            <strong>Hexadecimal:</strong>
+            <span id="hexResult"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice quiz -->
+    <section class="lesson-section">
+      <h2>7. Practice Questions</h2>
+
+      <p>
+        Select one answer for each question. Click
+        <strong>Check My Answers</strong> to see your score.
+      </p>
+
+      <form id="practiceForm">
+
+        <div class="question" data-answer="b">
+          <p>1. Convert 18₁₀ to binary.</p>
+
+          <label><input type="radio" name="q1" value="a"> 10001₂</label>
+          <label><input type="radio" name="q1" value="b"> 10010₂</label>
+          <label><input type="radio" name="q1" value="c"> 10100₂</label>
+
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>2. Convert 45₁₀ to binary.</p>
+
+          <label><input type="radio" name="q2" value="a"> 101011₂</label>
+          <label><input type="radio" name="q2" value="b"> 101110₂</label>
+          <label><input type="radio" name="q2" value="c"> 101101₂</label>
+
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>3. Convert 65₁₀ to octal.</p>
+
+          <label><input type="radio" name="q3" value="a"> 101₈</label>
+          <label><input type="radio" name="q3" value="b"> 105₈</label>
+          <label><input type="radio" name="q3" value="c"> 111₈</label>
+
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="b">
+          <p>4. Convert 100₁₀ to octal.</p>
+
+          <label><input type="radio" name="q4" value="a"> 124₈</label>
+          <label><input type="radio" name="q4" value="b"> 144₈</label>
+          <label><input type="radio" name="q4" value="c"> 154₈</label>
+
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="c">
+          <p>5. Convert 175₁₀ to hexadecimal.</p>
+
+          <label><input type="radio" name="q5" value="a"> AF₁₆</label>
+          <label><input type="radio" name="q5" value="b"> B0₁₆</label>
+          <label><input type="radio" name="q5" value="c"> AF₁₆</label>
+
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <div class="question" data-answer="a">
+          <p>6. Convert 255₁₀ to hexadecimal.</p>
+
+          <label><input type="radio" name="q6" value="a"> FF₁₆</label>
+          <label><input type="radio" name="q6" value="b"> FE₁₆</label>
+          <label><input type="radio" name="q6" value="c"> F0₁₆</label>
+
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+
+        <button
+          type="button"
+          class="lesson-button"
+          onclick="checkAnswers()"
+        >
+          Check My Answers
+        </button>
+
+        <button
+          type="button"
+          class="lesson-button secondary-button"
+          onclick="resetQuiz()"
+        >
+          Try Again
+        </button>
+
+        <div
+          id="quizScore"
+          class="result-box"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></div>
+      </form>
+    </section>
+
+    <!-- Summary -->
+    <section class="lesson-section">
+      <h2>8. Lesson Summary</h2>
+
+      <ul>
+        <li>The decimal number system has base 10 and uses digits 0–9.</li>
+        <li>To convert decimal to binary, repeatedly divide by 2.</li>
+        <li>To convert decimal to octal, repeatedly divide by 8.</li>
+        <li>To convert decimal to hexadecimal, repeatedly divide by 16.</li>
+        <li>For each method, read the remainders from bottom to top.</li>
+        <li>In hexadecimal, A–F represent decimal values 10–15.</li>
+      </ul>
+    </section>
+
+    <div class="lesson-navigation">
+      <a href="lesson3.html">← Previous: Lesson 3</a>
+      <a href="lesson5.html">Next: Lesson 5 →</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>DTI Learning Hub | Class 9 Digital Number System</p>
+  </footer>
+
+  <script src="../script.js"></script>
+
+  <script>
+    // Decimal converter
+    function convertDecimal() {
+      const input = document.getElementById("decimalInput")
+        .value.trim();
+
+      const message = document.getElementById("converterMessage");
+      const results = document.getElementById("converterResults");
+
+      if (!input) {
+        message.textContent = "Please enter a decimal number.";
+        message.className = "feedback incorrect";
+        results.hidden = true;
+        return;
+      }
+
+      if (!/^\d+$/.test(input)) {
+        message.textContent =
+          "Enter a whole decimal number using digits 0–9 only.";
+        message.className = "feedback incorrect";
+        results.hidden = true;
+        return;
+      }
+
+      const decimal = Number(input);
+
+      if (!Number.isSafeInteger(decimal)) {
+        message.textContent =
+          "This number is too large for the converter.";
+        message.className = "feedback incorrect";
+        results.hidden = true;
+        return;
+      }
+
+      document.getElementById("decimalResult").textContent =
+        decimal + "₁₀";
+
+      document.getElementById("binaryResult").textContent =
+        decimal.toString(2) + "₂";
+
+      document.getElementById("octalResult").textContent =
+        decimal.toString(8) + "₈";
+
+      document.getElementById("hexResult").textContent =
+        decimal.toString(16).toUpperCase() + "₁₆";
+
+      message.textContent = "Conversion completed successfully!";
+      message.className = "feedback correct";
+      results.hidden = false;
+    }
+
+    function resetConverter() {
+      document.getElementById("decimalInput").value = "";
+      document.getElementById("converterMessage").textContent = "";
+      document.getElementById("converterResults").hidden = true;
+    }
+
+    // Practice quiz
+    function checkAnswers() {
+      const questions = document.querySelectorAll(
+        "#practiceForm .question"
+      );
+
+      let score = 0;
+      let unanswered = 0;
+
+      questions.forEach(function(question) {
+        const correctAnswer = question.dataset.answer;
+
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
+
+        const feedback = question.querySelector(".feedback");
+
+        if (!selected) {
+          unanswered++;
+          feedback.textContent = "Please select an answer.";
+          feedback.className = "feedback incorrect";
+          return;
+        }
+
+        if (selected.value === correctAnswer) {
+          score++;
+          feedback.textContent = "Correct! Well done.";
+          feedback.className = "feedback correct";
+        } else {
+          const correctOption = question.querySelector(
+            'input[value="' + correctAnswer + '"]'
+          );
+
+          feedback.textContent =
+            "Not quite. Correct answer: " +
+            correctOption.parentElement.textContent.trim();
+
+          feedback.className = "feedback incorrect";
+        }
+      });
+
+      const scoreBox = document.getElementById("quizScore");
+      scoreBox.hidden = false;
+
+      scoreBox.textContent =
+        "Your score: " + score + " / " + questions.length +
+        (unanswered
+          ? ". Unanswered questions: " + unanswered + "."
+          : ". You have answered all six questions.");
+    }
+
+    function resetQuiz() {
+      document.getElementById("practiceForm").reset();
+
+      document.querySelectorAll(
+        "#practiceForm .feedback"
+      ).forEach(function(feedback) {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      });
+
+      document.getElementById("quizScore").hidden = true;
+    }
+
+    document.getElementById("decimalInput")
+      .addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          convertDecimal();
+        }
+      });
+  </script>
+
+</body>
+</html>

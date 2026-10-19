@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lesson 1: Data Representation and Number System for Class IX DTI.">
+  <title>Lesson 1 | DTI Learning Hub</title>
+
+  <!-- Because this file is inside the lessons folder -->
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    :root {
+      --purple: #493653;
+      --purple-light: #eee5f8;
+      --cream: #fff8ee;
+      --peach: #f8dfcf;
+      --green: #7b987a;
+      --green-light: #e9f5e9;
+      --blue-light: #e6f2ff;
+      --border: #e7ded5;
+      --text: #293c60;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #fffaf3;
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    .lesson-navbar {
+      background: var(--purple);
+      color: white;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .lesson-logo {
+      color: white;
+      text-decoration: none;
+      font-size: 1.45rem;
+      font-weight: bold;
+    }
+
+    .lesson-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .lesson-nav a,
+    .lesson-nav button {
+      color: white;
+      text-decoration: none;
+      background: none;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .lesson-nav a:hover,
+    .lesson-nav button:hover {
+      color: #f5d4b9;
+    }
+
+    .lesson-dropdown {
+      position: relative;
+    }
+
+    .lesson-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      width: 270px;
+      background: var(--cream);
+      border-radius: 10px;
+      box-shadow: 0 8px 25px #0002;
+      padding: 8px;
+    }
+
+    .lesson-dropdown.open .lesson-dropdown-menu {
+      display: block;
+    }
+
+    .lesson-dropdown-menu a {
+      display: block;
+      color: var(--purple);
+      padding: 9px;
+      border-radius: 6px;
+    }
+
+    .lesson-dropdown-menu a:hover {
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+
+    .lesson-hero {
+      padding: 45px 6%;
+      background: linear-gradient(120deg, #f8dfcf, #fff4e8);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .lesson-badge {
+      display: inline-block;
+      padding: 5px 13px;
+      background: #f1d1c5;
+      color: var(--purple);
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.12;
+      margin: 12px 0;
+      color: var(--purple);
+    }
+
+    .lesson-hero p { font-size: 1.08rem; }
+
+    .hero-art {
+      text-align: center;
+      padding: 25px;
+      background: #7b987a;
+      border-radius: 45% 45% 25px 25px;
+    }
+
+    .hero-screen {
+      background: #fff8ee;
+      border-radius: 18px;
+      padding: 25px 12px;
+      box-shadow: 0 8px 20px #26344b20;
+    }
+
+    .binary-display {
+      background: #253b5c;
+      color: #8fe0f0;
+      font-family: monospace;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      letter-spacing: 5px;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-icons {
+      font-size: 2rem;
+      letter-spacing: 8px;
+      margin-bottom: 10px;
+    }
+
+    .lesson-layout {
+      width: min(1400px, 94%);
+      margin: 25px auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .lesson-main,
+    .lesson-sidebar {
+      min-width: 0;
+    }
+
+    .lesson-card,
+    .sidebar-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 12px #49365308;
+    }
+
+    .lesson-card h2,
+    .sidebar-card h2 {
+      color: var(--purple);
+      margin-top: 0;
+      line-height: 1.3;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #674889;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .objective-card { background: var(--green-light); }
+    .info-card { background: #f4effb; }
+    .example-card { background: #fff5dc; }
+    .blue-card { background: var(--blue-light); }
+
+    .objectives-list li,
+    .lesson-card li {
+      margin-bottom: 7px;
+    }
+
+    .data-types {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .data-type {
+      padding: 12px;
+      background: #fff9f1;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .data-type strong {
+      display: block;
+      color: var(--purple);
+    }
+
+    .data-icon { font-size: 1.6rem; }
+
+    .visual-computer {
+      background: #253b5c;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      max-width: 350px;
+      margin: 18px auto;
+      text-align: center;
+    }
+
+    .visual-computer-screen {
+      background: #e8f4ff;
+      color: #253b5c;
+      padding: 20px 10px;
+      border-radius: 8px;
+    }
+
+    .visual-computer-screen .mini-bits {
+      font-family: monospace;
+      color: #168a9b;
+      overflow-wrap: anywhere;
+    }
+
+    .number-table-wrap {
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .number-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 430px;
+    }
+
+    .number-table th,
+    .number-table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd5e5;
+    }
+
+    .number-table th {
+      background: var(--purple);
+      color: white;
+    }
+
+    .number-table tbody tr:nth-child(odd) { background: #f6f0fb; }
+    .number-table tbody tr:nth-child(even) { background: #f0f8f0; }
+
+    .base-bubble {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #e2d4f0;
+      font-weight: bold;
+    }
+
+    .place-value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .equation-card {
+      padding: 16px;
+      border-radius: 10px;
+      background: #eef7fc;
+      overflow-wrap: anywhere;
+    }
+
+    .equation-card:nth-child(2) { background: #f3eafa; }
+
+    .equation {
+      font-family: "Courier New", monospace;
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 10px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .note {
+      padding: 13px;
+      background: #fff4d9;
+      border-left: 4px solid #dfa43b;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .state-box {
+      text-align: center;
+      padding: 18px;
+      border-radius: 12px;
+      background: var(--green-light);
+    }
+
+    .state-box.off { background: #f3eafa; }
+
+    .state-symbol {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: bold;
+    }
+
+    .converter-form label {
+      display: block;
+      margin: 12px 0 5px;
+      font-weight: bold;
+    }
+
+    .converter-form input,
+    .converter-form select,
+    .answer-input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cfc6d8;
+      border-radius: 7px;
+      font: inherit;
+      background: white;
+      color: var(--text);
+    }
+
+    .action-button {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      margin-top: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #674889;
+      color: white;
+      font: inherit;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .action-button:hover { background: var(--purple); }
+
+    .secondary-button {
+      background: var(--green);
+    }
+
+    .result-box {
+      margin-top: 13px;
+      padding: 13px;
+      border-radius: 8px;
+      background: var(--purple-light);
+      overflow-wrap: anywhere;
+    }
+
+    .result-box:empty { display: none; }
+
+    .small-text {
+      font-size: 0.92rem;
+      color: #53627b;
+    }
+
+    .system-guide {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .system-tile {
+      padding: 14px;
+      text-align: center;
+      border-radius: 10px;
+      background: #e2f6ed;
+    }
+
+    .system-tile:nth-child(2) { background: #e3efff; }
+    .system-tile:nth-child(3) { background: #f0e1fb; }
+    .system-tile:nth-child(4) { background: #ffe5de; }
+
+    .system-tile strong,
+    .system-tile span { display: block; }
+
+    .question {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .question:last-child { border-bottom: none; }
+
+    .question label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .feedback {
+      margin-top: 6px;
+      font-size: 0.9rem;
+    }
+
+    .correct { color: #23743d; font-weight: bold; }
+    .incorrect { color: #b33131; font-weight: bold; }
+
+    .answer-key summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--purple);
+      padding: 10px 0;
+    }
+
+    .keep-learning {
+      background: var(--green-light);
+      border: 1px solid #d4e8d6;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .lesson-footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 25px;
+      background: var(--purple);
+      color: white;
+    }
+
+    .lesson-footer a {
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .lesson-layout { grid-template-columns: 1fr; }
+      .lesson-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .sidebar-card { margin-bottom: 0; }
+    }
+
+    @media (max-width: 650px) {
+      .lesson-navbar { align-items: flex-start; }
+      .lesson-nav { gap: 12px; }
+      .lesson-hero { grid-template-columns: 1fr; padding: 30px 5%; }
+      .hero-art { max-width: 420px; margin: auto; width: 100%; }
+      .lesson-layout { width: 94%; }
+      .lesson-card, .sidebar-card { padding: 16px; }
+      .lesson-sidebar { display: block; }
+      .sidebar-card { margin-bottom: 15px; }
+      .place-value-grid, .data-types { grid-template-columns: 1fr; }
+      .lesson-hero h1 { font-size: 2.25rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="lesson-navbar">
+    <a class="lesson-logo" href="../index.html">DTI Learning Hub</a>
+
+    <nav class="lesson-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+
+      <div class="lesson-dropdown">
+        <button type="button" class="lesson-dropdown-toggle"
+          aria-expanded="false">Course ⌄</button>
+        <div class="lesson-dropdown-menu">
+          <a href="lesson1.html" aria-current="page">Lesson 1: Data Representation</a>
+          <a href="lesson2.html">Lesson 2: Binary Number System</a>
+          <a href="lesson3.html">Lesson 3: Octal Number System</a>
+          <a href="lesson4.html">Lesson 4: Decimal Conversion</a>
+          <a href="lesson5.html">Lesson 5: Hexadecimal Conversion</a>
+        </div>
+      </div>
+
+      <div class="lesson-dropdown">
+        <button type="button" class="lesson-dropdown-toggle"
+          aria-expanded="false">Resources ⌄</button>
+        <div class="lesson-dropdown-menu">
+          <a href="../student-resources.html">Student Resources</a>
+          <a href="../teacher-resources.html">Teacher Resources</a>
+        </div>
+      </div>
+
+      <a href="../video.html">Video</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="lesson-hero">
+    <div>
+      <span class="lesson-badge">LESSON 1</span>
+      <h1>Data Representation and Number System</h1>
+      <h3>Changing Face Of Bhutan - The Youth</h3>
+      <p>
+        Learn how computers represent information and explore the four
+        number systems used in digital technology.
+      </p>
+    </div>
+
+    <div class="hero-art" role="img"
+      aria-label="Illustration representing digital information">
+      <div class="hero-screen">
+        <div class="hero-icons">📝 🖼️ 🎵 🎬</div>
+        <div class="binary-display">
+          010101<br>101101<br>010110
+        </div>
+        <p><strong>Information becomes digital data</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="lesson-layout">
+
+    <main class="lesson-main">
+
+      <!-- LEARNING OBJECTIVES -->
+      <section class="lesson-card objective-card">
+        <h2>🎯 Learning Objectives</h2>
+        <p>By the end of this lesson, students should be able to:</p>
+        <ul class="objectives-list">
+          <li>Define data representation and number system.</li>
+          <li>Explain why computers use binary numbers.</li>
+          <li>Identify decimal, binary, octal and hexadecimal number systems.</li>
+          <li>State the base and symbols used in each number system.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 1 -->
+      <section class="lesson-card" id="data-representation">
+        <h2 class="section-heading">
+          <span class="section-number">1</span>
+          What Is Data Representation?
+        </h2>
+
+        <p>
+          Data representation is the way information is expressed,
+          stored and processed in a computer.
+        </p>
+
+        <p>Computers work with different types of information, such as:</p>
+
+        <div class="data-types">
+          <div class="data-type">
+            <span class="data-icon">📝</span>
+            <strong>Text</strong>
+            Letters, words and sentences.
+          </div>
+          <div class="data-type">
+            <span class="data-icon">🔢</span>
+            <strong>Numbers</strong>
+            Quantities and calculations.
+          </div>
+          <div class="data-type">
+            <span class="data-icon">🖼️</span>
+            <strong>Images</strong>
+            Photographs and drawings.
+          </div>
+          <div class="data-type">
+            <span class="data-icon">🎵</span>
+            <strong>Audio</strong>
+            Recorded voices and music.
+          </div>
+          <div class="data-type">
+            <span class="data-icon">🎬</span>
+            <strong>Video</strong>
+            Moving pictures.
+          </div>
+        </div>
+
+        <p>
+          Although these types of information look different to us,
+          computers represent them internally using binary digits,
+          called <strong>bits</strong>.
+        </p>
+
+        <div class="visual-computer">
+          <div class="visual-computer-screen">
+            <p>Example: A student types their name</p>
+            <h3>SONAM</h3>
+            <div class="mini-bits">01010011 01001111<br>01001110 01000001 01001101</div>
+          </div>
+          <p>Text is represented using digital codes.</p>
+        </div>
+
+        <div class="note">
+          <strong>Remember:</strong> When a student types their name on a
+          computer, the computer represents the text using digital codes
+          made up of binary digits. The binary sequence shown above is
+          illustrative; actual text encoding depends on the character encoding.
+        </div>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="lesson-card" id="number-systems">
+        <h2 class="section-heading">
+          <span class="section-number">2</span>
+          What Is a Number System?
+        </h2>
+
+        <p>
+          A number system is a method of representing numbers using a set
+          of symbols and rules.
+        </p>
+
+        <p>There are four important number systems in this lesson.</p>
+
+        <div class="number-table-wrap">
+          <table class="number-table">
+            <thead>
+              <tr>
+                <th>Number System</th>
+                <th>Base</th>
+                <th>Symbols Used</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Decimal</strong></td>
+                <td><span class="base-bubble">10</span></td>
+                <td>0–9</td>
+                <td>245</td>
+              </tr>
+              <tr>
+                <td><strong>Binary</strong></td>
+                <td><span class="base-bubble">2</span></td>
+                <td>0 and 1</td>
+                <td>1011₂</td>
+              </tr>
+              <tr>
+                <td><strong>Octal</strong></td>
+                <td><span class="base-bubble">8</span></td>
+                <td>0–7</td>
+                <td>57₈</td>
+              </tr>
+              <tr>
+                <td><strong>Hexadecimal</strong></td>
+                <td><span class="base-bubble">16</span></td>
+                <td>0–9 and A–F</td>
+                <td>2F₁₆</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="system-guide">
+          <div class="system-tile">
+            <strong>Decimal</strong>
+            <span>Base 10</span>
+            <span>Digits 0–9</span>
+          </div>
+          <div class="system-tile">
+            <strong>Binary</strong>
+            <span>Base 2</span>
+            <span>Digits 0, 1</span>
+          </div>
+          <div class="system-tile">
+            <strong>Octal</strong>
+            <span>Base 8</span>
+            <span>Digits 0–7</span>
+          </div>
+          <div class="system-tile">
+            <strong>Hexadecimal</strong>
+            <span>Base 16</span>
+            <span>Digits 0–9, A–F</span>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>Did you know?</strong> Each octal digit can represent
+          three binary bits, and each hexadecimal digit can represent
+          four binary bits.
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="lesson-card" id="place-value">
+        <h2 class="section-heading">
+          <span class="section-number">3</span>
+          Understanding Place Value
+        </h2>
+
+        <p>
+          In a positional number system, the value of a digit depends
+          on its position.
+        </p>
+
+        <div class="place-value-grid">
+          <div class="equation-card">
+            <h3>Decimal Example: 352</h3>
+            <div class="equation">
+              352 = (3 × 100) + (5 × 10) + (2 × 1)
+            </div>
+            <p>The place values are powers of 10:</p>
+            <div class="equation">10², 10¹, 10⁰</div>
+            <p>300 + 50 + 2 = 352</p>
+          </div>
+
+          <div class="equation-card">
+            <h3>Binary Example: 1011₂</h3>
+            <div class="equation">
+              1011₂ = (1 × 8) + (0 × 4) + (1 × 2) + (1 × 1)
+            </div>
+            <div class="equation">1011₂ = 11₁₀</div>
+            <p>The place values are powers of 2:</p>
+            <div class="equation">2³, 2², 2¹, 2⁰</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>What is a subscript?</strong> The small number written
+          below a number, such as the 2 in 1011₂, identifies the base
+          of that number system. It is called a subscript.
+        </div>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section class="lesson-card" id="binary">
+        <h2 class="section-heading">
+          <span class="section-number">4</span>
+          Why Do Computers Use Binary?
+        </h2>
+
+        <p>
+          Computers use electronic circuits that can represent two states,
+          such as ON and OFF. These states can be represented using
+          binary digits.
+        </p>
+
+        <div class="state-grid">
+          <div class="state-box">
+            <span class="state-symbol">1</span>
+            <strong>ON</strong>
+            <p>A state represented by binary 1.</p>
+          </div>
+          <div class="state-box off">
+            <span class="state-symbol">0</span>
+            <strong>OFF</strong>
+            <p>A state represented by binary 0.</p>
+          </div>
+        </div>
+
+        <div class="place-value-grid" style="margin-top: 15px;">
+          <div class="equation-card">
+            <h3>💡 Bit</h3>
+            <p>A single binary digit is called a bit.</p>
+            <div class="equation">0 or 1 = 1 bit</div>
+          </div>
+          <div class="equation-card">
+            <h3>💻 Byte</h3>
+            <p>A group of eight bits is called a byte.</p>
+            <div class="equation">10101010 = 8 bits</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRACTICE QUESTIONS -->
+      <section class="lesson-card" id="practice">
+        <h2 class="section-heading">
+          <span class="section-number">5</span>
+          Practice Questions
+        </h2>
+
+        <p>Answer all five questions, then click Check My Answers.</p>
+
+        <form id="lessonQuiz" class="quiz-form">
+          <div class="question">
+            <label for="q1">1. What is data representation?</label>
+            <input class="answer-input" id="q1" name="q1"
+              type="text" placeholder="Type your answer" required>
+            <div class="feedback" id="f1" aria-live="polite"></div>
+          </div>
+
+          <div class="question">
+            <label for="q2">2. Which number system uses only 0 and 1?</label>
+            <select class="answer-input" id="q2" name="q2" required>
+              <option value="">Choose an answer</option>
+              <option value="decimal">Decimal</option>
+              <option value="binary">Binary</option>
+              <option value="octal">Octal</option>
+              <option value="hexadecimal">Hexadecimal</option>
+            </select>
+            <div class="feedback" id="f2" aria-live="polite"></div>
+          </div>
+
+          <div class="question">
+            <label for="q3">3. State the base of the octal number system.</label>
+            <input class="answer-input" id="q3" name="q3"
+              type="text" placeholder="Enter the base" required>
+            <div class="feedback" id="f3" aria-live="polite"></div>
+          </div>
+
+          <div class="question">
+            <label for="q4">4. Which symbols are used in the hexadecimal number system?</label>
+            <input class="answer-input" id="q4" name="q4"
+              type="text" placeholder="Enter the symbols" required>
+            <div class="feedback" id="f4" aria-live="polite"></div>
+          </div>
+
+          <div class="question">
+            <label for="q5">5. How many bits make one byte?</label>
+            <input class="answer-input" id="q5" name="q5"
+              type="text" placeholder="Enter the number" required>
+            <div class="feedback" id="f5" aria-live="polite"></div>
+          </div>
+
+          <button class="action-button" type="submit">
+            Check My Answers
+          </button>
+
+          <button class="action-button secondary-button" type="button"
+            id="resetQuiz">
+            Try Again
+          </button>
+        </form>
+
+        <div class="result-box" id="quizResult" aria-live="polite"></div>
+
+        <details class="answer-key">
+          <summary>View Answer Key</summary>
+          <ol>
+            <li>Data representation is the way information is expressed, stored and processed in a computer.</li>
+            <li>Binary number system.</li>
+            <li>Base 8.</li>
+            <li>Digits 0–9 and letters A–F.</li>
+            <li>Eight bits.</li>
+          </ol>
+        </details>
+      </section>
+
+      <!-- END OF LESSON -->
+      <section class="keep-learning">
+        <h2>🌱 Keep Learning!</h2>
+        <p>
+          Understanding number systems helps you build a strong foundation
+          in digital technology and prepares you for more advanced
+          conversion methods in the next lessons.
+        </p>
+        <a href="lesson2.html">Continue to Lesson 2 →</a>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="lesson-sidebar" aria-label="Lesson tools">
+
+      <!-- CONVERTER -->
+      <section class="sidebar-card">
+        <h2>🔄 Number System Converter</h2>
+        <p class="small-text">
+          Convert a whole number between decimal, binary, octal
+          and hexadecimal.
+        </p>
+
+        <form id="converterForm" class="converter-form">
+          <label for="fromBase">Convert from</label>
+          <select id="fromBase">
+            <option value="10">Decimal (Base 10)</option>
+            <option value="2">Binary (Base 2)</option>
+            <option value="8">Octal (Base 8)</option>
+            <option value="16">Hexadecimal (Base 16)</option>
+          </select>
+
+          <label for="toBase">Convert to</label>
+          <select id="toBase">
+            <option value="2">Binary (Base 2)</option>
+            <option value="10">Decimal (Base 10)</option>
+            <option value="8">Octal (Base 8)</option>
+            <option value="16">Hexadecimal (Base 16)</option>
+          </select>
+
+          <label for="convertNumber">Enter a number</label>
+          <input id="convertNumber" type="text"
+            placeholder="Example: 25" autocomplete="off" required>
+
+          <button class="action-button" type="submit">Convert</button>
+        </form>
+
+        <div class="result-box" id="converterResult" aria-live="polite"></div>
+
+        <p class="small-text">
+          Example: 25 in decimal is 11001 in binary.
+        </p>
+      </section>
+
+      <!-- QUICK GUIDE -->
+      <section class="sidebar-card">
+        <h2>📘 Quick Reference</h2>
+        <div class="system-guide">
+          <div class="system-tile">
+            <strong>Decimal</strong>
+            <span>Base 10</span>
+            <span>0–9</span>
+          </div>
+          <div class="system-tile">
+            <strong>Binary</strong>
+            <span>Base 2</span>
+            <span>0, 1</span>
+          </div>
+          <div class="system-tile">
+            <strong>Octal</strong>
+            <span>Base 8</span>
+            <span>0–7</span>
+          </div>
+          <div class="system-tile">
+            <strong>Hexadecimal</strong>
+            <span>Base 16</span>
+            <span>0–9, A–F</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- REMINDERS -->
+      <section class="sidebar-card info-card">
+        <h2>💡 Remember</h2>
+        <ul>
+          <li>Binary uses only 0 and 1.</li>
+          <li>One bit is one binary digit.</li>
+          <li>One byte contains eight bits.</li>
+          <li>Subscripts identify the number-system base.</li>
+        </ul>
+      </section>
+
+      <!-- LESSON NAVIGATION -->
+      <section class="sidebar-card">
+        <h2>📚 Lesson Navigation</h2>
+        <p><strong>Lesson 1:</strong> Data Representation and Number System</p>
+        <p><a href="lesson2.html">Next: Binary Number System →</a></p>
+        <p><a href="../student-resources.html">Student Resources</a></p>
+      </section>
+
+    </aside>
+  </div>
+
+  <footer class="lesson-footer">
+    DTI Learning Hub | Class 9 Digital Number System
+    <p><a href="../index.html">Back to Home</a></p>
+  </footer>
+
+  <script src="../script.js"></script>
+
+  <script>
+    // Navigation dropdowns
+    document.querySelectorAll(".lesson-dropdown-toggle").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const dropdown = button.closest(".lesson-dropdown");
+        const isOpen = dropdown.classList.toggle("open");
+        button.setAttribute("aria-expanded", String(isOpen));
+
+        document.querySelectorAll(".lesson-dropdown").forEach(function(other) {
+          if (other !== dropdown) {
+            other.classList.remove("open");
+            const otherButton = other.querySelector(".lesson-dropdown-toggle");
+            if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    });
+
+    document.addEventListener("click", function(event) {
+      if (!event.target.closest(".lesson-dropdown")) {
+        document.querySelectorAll(".lesson-dropdown").forEach(function(dropdown) {
+          dropdown.classList.remove("open");
+          const button = dropdown.querySelector(".lesson-dropdown-toggle");
+          if (button) button.setAttribute("aria-expanded", "false");
+        });
+      }
+    });
+
+    // Number system converter
+    const converterForm = document.getElementById("converterForm");
+    const converterResult = document.getElementById("converterResult");
+
+    converterForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const fromBase = Number(document.getElementById("fromBase").value);
+      const toBase = Number(document.getElementById("toBase").value);
+      const raw = document.getElementById("convertNumber").value.trim();
+
+      if (!raw) {
+        converterResult.textContent = "Please enter a number.";
+        return;
+      }
+
+      // Validate every digit before conversion.
+      const validDigits = {
+        2: /^[01]+$/,
+        8: /^[0-7]+$/,
+        10: /^[0-9]+$/,
+        16: /^[0-9a-fA-F]+$/
+      };
+
+      if (!validDigits[fromBase].test(raw)) {
+        converterResult.textContent =
+          "Invalid number for base " + fromBase +
+          ". Please check the allowed digits.";
+        return;
+      }
+
+      // BigInt supports large whole numbers.
+      try {
+        const value = BigInt(parseInt(raw[0], fromBase));
+        // Parse the complete value safely with BigInt.
+        const parsed = convertToBigInt(raw, fromBase);
+
+        converterResult.innerHTML =
+          "<strong>Converted result:</strong><br>" +
+          raw.toUpperCase() + " (base " + fromBase + ") = " +
+          parsed.toString(toBase).toUpperCase() +
+          " (base " + toBase + ")";
+
+      } catch (error) {
+        converterResult.textContent =
+          "Unable to convert this number. Please check your input.";
+      }
+    });
+
+    function convertToBigInt(value, base) {
+      const digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const text = value.toUpperCase();
+      let result = 0n;
+      const bigBase = BigInt(base);
+
+      for (const character of text) {
+        const digit = digits.indexOf(character);
+        if (digit < 0 || digit >= base) {
+          throw new Error("Invalid digit");
+        }
+        result = result * bigBase + BigInt(digit);
+      }
+      return result;
+    }
+
+    // Check the five practice answers
+    const quizForm = document.getElementById("lessonQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    quizForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const answers = [
+        {
+          id: "q1",
+          feedback: "f1",
+          check: function(value) {
+            return value.includes("information") &&
+              (value.includes("computer") || value.includes("stored") ||
+               value.includes("processed") || value.includes("expressed"));
+          },
+          message: "It describes how information is expressed, stored and processed in a computer."
+        },
+        {
+          id: "q2",
+          feedback: "f2",
+          check: function(value) { return value === "binary"; },
+          message: "Binary uses only 0 and 1."
+        },
+        {
+          id: "q3",
+          feedback: "f3",
+          check: function(value) {
+            return ["8", "base 8", "eight", "base eight"].includes(value);
+          },
+          message: "The octal number system has base 8."
+        },
+        {
+          id: "q4",
+          feedback: "f4",
+          check: function(value) {
+            const normalized = value.replace(/\s/g, "").replace(/,/g, "");
+            return normalized.includes("0-9") &&
+              (normalized.includes("a-f") || normalized.includes("A-F") ||
+               normalized.includes("af"));
+          },
+          message: "Hexadecimal uses digits 0–9 and letters A–F."
+        },
+        {
+          id: "q5",
+          feedback: "f5",
+          check: function(value) {
+            return ["8", "eight", "8 bits", "eight bits"].includes(value);
+          },
+          message: "One byte contains eight bits."
+        }
+      ];
+
+      let score = 0;
+
+      answers.forEach(function(answer) {
+        const input = document.getElementById(answer.id);
+        const feedback = document.getElementById(answer.feedback);
+        const value = input.value.trim().toLowerCase();
+        const isCorrect = answer.check(value);
+
+        feedback.className = "feedback " + (isCorrect ? "correct" : "incorrect");
+        feedback.textContent = (isCorrect ? "✓ Correct! " : "✗ Review: ") +
+          answer.message;
+
+        if (isCorrect) score++;
+      });
+
+      quizResult.innerHTML =
+        "<strong>Your score: " + score + " / " + answers.length + "</strong><br>" +
+        (score === answers.length
+          ? "Excellent work! You answered all five questions correctly."
+          : "Review the feedback above, then select Try Again to practise.");
+    });
+
+    document.getElementById("resetQuiz").addEventListener("click", function() {
+      quizForm.reset();
+      quizResult.textContent = "";
+
+      document.querySelectorAll(".feedback").forEach(function(feedback) {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      });
+    });
+  </script>
+</body>
+</html>

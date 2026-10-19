@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Quiz | DTI Learning Hub</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root {
+    --plum: #493653;
+    --cream: #fff8ec;
+    --coral: #e98270;
+    --gold: #e9bd69;
+    --green: #789477;
+    --text: #352c3a;
+    --soft: #f7e8d4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+}
+
+button, select { font: inherit; }
+
+button { cursor: pointer; }
+
+.quiz-header {
+    background: var(--plum);
+    color: white;
+    padding: 17px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-size: 1.35rem;
+    font-weight: bold;
+}
+
+.quiz-header a {
+    color: white;
+    text-decoration: none;
+}
+
+.quiz-header a:hover { color: var(--gold); }
+
+.header-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hero {
+    padding: 48px 20px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #493653, #725b78);
+    color: white;
+}
+
+.hero .eyebrow {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: .82rem;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin: 10px 0;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.08rem;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+.intro-card {
+    background: white;
+    border: 1px solid #eadcc9;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 18px #4936530c;
+}
+
+.intro-card h2 {
+    margin-top: 0;
+    color: var(--plum);
+}
+
+.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.lesson-tile {
+    padding: 16px 12px;
+    border: 2px solid #eadcc9;
+    background: var(--cream);
+    border-radius: 13px;
+    text-align: center;
+    color: var(--plum);
+    transition: .2s;
+}
+
+.lesson-tile:hover {
+    border-color: var(--coral);
+    transform: translateY(-3px);
+}
+
+.lesson-tile.active {
+    background: var(--plum);
+    color: white;
+    border-color: var(--plum);
+}
+
+.lesson-tile .tile-number {
+    font-size: 1.6rem;
+    display: block;
+}
+
+.lesson-tile strong {
+    display: block;
+    margin-top: 5px;
+}
+
+.lesson-tile small {
+    display: block;
+    margin-top: 5px;
+}
+
+.quiz-panel {
+    background: white;
+    border: 1px solid #eadcc9;
+    border-radius: 20px;
+    padding: clamp(18px, 4vw, 32px);
+    box-shadow: 0 8px 25px #4936530d;
+}
+
+.quiz-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.lesson-label {
+    color: var(--plum);
+    font-weight: bold;
+}
+
+.question-count {
+    color: #6b6170;
+    font-size: .95rem;
+}
+
+.progress-track {
+    height: 9px;
+    background: var(--soft);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    transition: width .3s ease;
+}
+
+.question-card {
+    border: 1px solid #eee3d6;
+    border-radius: 15px;
+    padding: 22px;
+    margin: 18px 0;
+}
+
+.question-card h3 {
+    margin: 0 0 18px;
+    color: var(--plum);
+    font-size: 1.12rem;
+}
+
+.options {
+    display: grid;
+    gap: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 13px 14px;
+    border: 1.5px solid #e6d9ca;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+
+.option:hover {
+    border-color: var(--coral);
+    background: #fff8f4;
+}
+
+.option input {
+    margin-top: 5px;
+    accent-color: var(--plum);
+    flex-shrink: 0;
+}
+
+.option:has(input:checked) {
+    border-color: var(--plum);
+    background: #f3edf5;
+}
+
+.option.correct {
+    border-color: var(--green);
+    background: #edf5eb;
+}
+
+.option.incorrect {
+    border-color: var(--coral);
+    background: #fff0ed;
+}
+
+.option input:disabled { cursor: default; }
+
+.feedback {
+    margin-top: 13px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    display: none;
+    font-size: .96rem;
+}
+
+.feedback.show { display: block; }
+.feedback.good { background: #edf5eb; color: #34553b; }
+.feedback.bad { background: #fff0ed; color: #873e34; }
+
+.quiz-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+    background: var(--plum);
+    color: white;
+}
+
+.btn-primary:hover { background: #60496a; }
+
+.btn-secondary {
+    background: var(--gold);
+    color: var(--text);
+}
+
+.btn-reset {
+    background: var(--soft);
+    color: var(--plum);
+}
+
+.result {
+    display: none;
+    text-align: center;
+    padding: 28px 18px;
+    margin-top: 25px;
+    border-radius: 18px;
+    background: var(--cream);
+    border: 2px solid var(--gold);
+}
+
+.result.show { display: block; }
+
+.score-circle {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    border: 8px solid var(--green);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.score-circle strong {
+    color: var(--plum);
+    font-size: 2rem;
+}
+
+.score-circle span { font-size: .85rem; }
+
+.result h2 { color: var(--plum); }
+
+.result p { max-width: 600px; margin: 12px auto; }
+
+.footer {
+    background: var(--plum);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 45px;
+}
+
+.footer p { margin: 5px; }
+
+@media (max-width: 520px) {
+    .header-links { gap: 12px; }
+    .quiz-actions .btn { width: 100%; }
+    .question-card { padding: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="quiz-header">
+    <a class="brand" href="index.html">📚 DTI Learning Hub</a>
+    <nav class="header-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="eyebrow">Learn • Practise • Achieve</div>
+    <h1>🎯 Interactive Quiz</h1>
+    <p>
+        Test your knowledge of Digital Number Systems!
+        Explore five lessons, solve questions and learn from
+        your answers at your own pace.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="intro-card">
+        <h2>Welcome to the Quiz Challenge!</h2>
+        <p>
+            Choose a lesson below and answer the questions.
+            Select the best answer for each question, then click
+            <strong>Check My Answers</strong> to see your score
+            and explanations.
+        </p>
+
+        <div class="lesson-grid" id="lessonGrid"></div>
+    </section>
+
+    <section class="quiz-panel" id="quizPanel">
+
+        <div class="quiz-top">
+            <span class="lesson-label" id="lessonLabel">Lesson 1</span>
+            <span class="question-count" id="questionCount">
+                Question 1 of 5
+            </span>
+        </div>
+
+        <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="Quiz progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            id="progressTrack"
+        >
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="questions"></div>
+
+        <div class="quiz-actions">
+            <button class="btn btn-primary" id="checkBtn" type="button">
+                ✓ Check My Answers
+            </button>
+            <button class="btn btn-secondary" id="nextBtn" type="button">
+                Next Lesson →
+            </button>
+            <button class="btn btn-reset" id="resetBtn" type="button">
+                ↻ Try Again
+            </button>
+        </div>
+
+        <section class="result" id="result" aria-live="polite">
+            <div id="resultEmoji" style="font-size:2.5rem;">🌟</div>
+            <h2 id="resultTitle">Quiz Completed!</h2>
+
+            <div class="score-circle">
+                <strong id="scoreValue">0/5</strong>
+                <span id="scorePercent">0%</span>
+            </div>
+
+            <p id="resultMessage"></p>
+            <p id="resultAdvice"></p>
+
+            <button class="btn btn-primary" id="reviewBtn" type="button">
+                Review My Answers
+            </button>
+            <button class="btn btn-secondary" id="retryBtn" type="button">
+                Try This Lesson Again
+            </button>
+        </section>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p><strong>DTI Learning Hub</strong></p>
+    <p>Digital Number Systems | Class IX</p>
+    <p>Learn • Explore • Practise • Discover</p>
+    <p>© 2026 DTI Learning Hub</p>
+</footer>
+
+<script>
+const lessons = [
+{
+    title: "Data Representation and Number System",
+    short: "Data & Bases",
+    icon: "💻",
+    questions: [
+        {
+            q: "What is data representation?",
+            options: [
+                "The way information is expressed, stored and processed in a computer",
+                "The process of repairing a computer",
+                "The act of drawing pictures only",
+                "The process of connecting a printer"
+            ],
+            answer: 0,
+            explanation: "Data representation is how information is expressed, stored and processed by a computer."
+        },
+        {
+            q: "Which number system uses only the digits 0 and 1?",
+            options: ["Decimal", "Octal", "Binary", "Hexadecimal"],
+            answer: 2,
+            explanation: "Binary has base 2 and uses only 0 and 1."
+        },
+        {
+            q: "What is the base of the octal number system?",
+            options: ["2", "8", "10", "16"],
+            answer: 1,
+            explanation: "Octal has base 8 and uses digits from 0 to 7."
+        },
+        {
+            q: "Which symbols are used in the hexadecimal number system?",
+            options: [
+                "Only 0 and 1",
+                "Digits 0–7 only",
+                "Digits 1–10",
+                "Digits 0–9 and letters A–F"
+            ],
+            answer: 3,
+            explanation: "Hexadecimal uses sixteen symbols: 0–9 and A–F."
+        },
+        {
+            q: "How many bits make one byte?",
+            options: ["2 bits", "4 bits", "8 bits", "16 bits"],
+            answer: 2,
+            explanation: "One byte consists of eight bits."
+        }
+    ]
+},
+{
+    title: "Binary to Other Number Systems",
+    short: "Binary Conversion",
+    icon: "0️⃣",
+    questions: [
+        {
+            q: "What is the decimal equivalent of 1010₂?",
+            options: ["8", "10", "12", "14"],
+            answer: 1,
+            explanation: "1010₂ = 1×8 + 0×4 + 1×2 + 0×1 = 10₁₀."
+        },
+        {
+            q: "Convert 1111₂ to decimal.",
+            options: ["12", "13", "14", "15"],
+            answer: 3,
+            explanation: "8 + 4 + 2 + 1 = 15. Therefore, 1111₂ = 15₁₀."
+        },
+        {
+            q: "Convert 101101₂ to octal.",
+            options: ["45₈", "55₈", "65₈", "35₈"],
+            answer: 1,
+            explanation: "Group into 101 and 101. Each group equals 5, so the answer is 55₈."
+        },
+        {
+            q: "Convert 111001₂ to octal.",
+            options: ["61₈", "71₈", "51₈", "73₈"],
+            answer: 0,
+            explanation: "Group as 111 and 001. These equal 7 and 1, so the answer is 71₈. Correction: 111001₂ = 71₈."
+        },
+        {
+            q: "Convert 10101111₂ to hexadecimal.",
+            options: ["AF₁₆", "AE₁₆", "BF₁₆", "9F₁₆"],
+            answer: 0,
+            explanation: "1010 = A and 1111 = F. Therefore, the answer is AF₁₆."
+        },
+        {
+            q: "Convert 11001010₂ to hexadecimal.",
+            options: ["CA₁₆", "BA₁₆", "C8₁₆", "DA₁₆"],
+            answer: 0,
+            explanation: "1100 = C and 1010 = A. Therefore, the answer is CA₁₆."
+        }
+    ]
+},
+{
+    title: "Octal to Other Number Systems",
+    short: "Octal Conversion",
+    icon: "🔢",
+    questions: [
+        {
+            q: "Convert 34₈ to binary.",
+            options: ["011100₂", "110100₂", "011010₂", "100011₂"],
+            answer: 0,
+            explanation: "3 = 011 and 4 = 100. Joining the groups gives 011100₂, or 11100₂ without the leading zero."
+        },
+        {
+            q: "Convert 126₈ to binary.",
+            options: ["001010110₂", "001100110₂", "010101110₂", "001010101₂"],
+            answer: 0,
+            explanation: "1 = 001, 2 = 010 and 6 = 110. Joining gives 001010110₂."
+        },
+        {
+            q: "Convert 25₈ to decimal.",
+            options: ["19", "21", "23", "25"],
+            answer: 1,
+            explanation: "2×8 + 5 = 16 + 5 = 21₁₀."
+        },
+        {
+            q: "Convert 347₈ to decimal.",
+            options: ["219", "223", "231", "239"],
+            answer: 1,
+            explanation: "3×64 + 4×8 + 7 = 192 + 32 + 7 = 231. The correct result is 231₁₀."
+        },
+        {
+            q: "Convert 17₈ to hexadecimal.",
+            options: ["F₁₆", "E₁₆", "11₁₆", "17₁₆"],
+            answer: 0,
+            explanation: "17₈ = 1×8 + 7 = 15₁₀, which is F₁₆."
+        },
+        {
+            q: "Convert 64₈ to hexadecimal.",
+            options: ["32₁₆", "34₁₆", "44₁₆", "54₁₆"],
+            answer: 1,
+            explanation: "64₈ = 6×8 + 4 = 52₁₀. Since 52 = 3×16 + 4, the answer is 34₁₆."
+        }
+    ]
+},
+{
+    title: "Decimal to Other Number Systems",
+    short: "Decimal Conversion",
+    icon: "🔟",
+    questions: [
+        {
+            q: "Convert 18₁₀ to binary.",
+            options: ["10010₂", "10100₂", "11010₂", "10001₂"],
+            answer: 0,
+            explanation: "18 = 16 + 2, so its binary representation is 10010₂."
+        },
+        {
+            q: "Convert 45₁₀ to binary.",
+            options: ["101011₂", "101101₂", "110101₂", "111001₂"],
+            answer: 1,
+            explanation: "45 = 32 + 8 + 4 + 1, giving 101101₂."
+        },
+        {
+            q: "Convert 65₁₀ to octal.",
+            options: ["101₈", "81₈", "105₈", "111₈"],
+            answer: 0,
+            explanation: "65 ÷ 8 gives remainders 1, 0 and 1 when read from bottom to top: 101₈."
+        },
+        {
+            q: "Convert 100₁₀ to octal.",
+            options: ["124₈", "144₈", "154₈", "164₈"],
+            answer: 1,
+            explanation: "100 = 1×64 + 4×8 + 4, so the answer is 144₈."
+        },
+        {
+            q: "Convert 175₁₀ to hexadecimal.",
+            options: ["AF₁₆", "BF₁₆", "AE₁₆", "9F₁₆"],
+            answer: 0,
+            explanation: "175 = 10×16 + 15. A represents 10 and F represents 15, giving AF₁₆."
+        },
+        {
+            q: "Convert 255₁₀ to hexadecimal.",
+            options: ["EF₁₆", "FE₁₆", "FF₁₆", "F0₁₆"],
+            answer: 2,
+            explanation: "255 = 15×16 + 15. Both digits are F, so the answer is FF₁₆."
+        }
+    ]
+},
+{
+    title: "Hexadecimal to Other Number Systems",
+    short: "Hexadecimal",
+    icon: "🔠",
+    questions: [
+        {
+            q: "Convert A₁₆ to binary.",
+            options: ["1000₂", "1010₂", "1100₂", "1110₂"],
+            answer: 1,
+            explanation: "A represents decimal 10, which is 1010₂."
+        },
+        {
+            q: "Convert 5C₁₆ to binary.",
+            options: ["01011100₂", "01011010₂", "01111100₂", "01001100₂"],
+            answer: 0,
+            explanation: "5 = 0101 and C = 1100. Joining gives 01011100₂."
+        },
+        {
+            q: "Convert 1B₁₆ to decimal.",
+            options: ["25", "26", "27", "28"],
+            answer: 2,
+            explanation: "1×16 + 11 = 27₁₀."
+        },
+        {
+            q: "Convert 7A₁₆ to decimal.",
+            options: ["112", "120", "122", "130"],
+            answer: 2,
+            explanation: "7×16 + 10 = 112 + 10 = 122₁₀."
+        },
+        {
+            q: "Convert 1F₁₆ to octal.",
+            options: ["35₈", "37₈", "31₈", "27₈"],
+            answer: 1,
+            explanation: "1F₁₆ = 00011111₂. Grouping as 000, 011, 111 gives 37₈."
+        },
+        {
+            q: "Convert 4B₁₆ to octal.",
+            options: ["112₈", "113₈", "123₈", "133₈"],
+            answer: 1,
+            explanation: "4B₁₆ = 01001011₂. Group as 001, 001, 011 to get 113₈."
+        }
+    ]
+}
+];
+
+let currentLesson = 0;
+let submitted = false;
+let answers = [];
+
+const lessonGrid = document.getElementById("lessonGrid");
+const questionsBox = document.getElementById("questions");
+const lessonLabel = document.getElementById("lessonLabel");
+const questionCount = document.getElementById("questionCount");
+const progressFill = document.getElementById("progressFill");
+const progressTrack = document.getElementById("progressTrack");
+const resultBox = document.getElementById("result");
+
+function renderLessonButtons() {
+    lessonGrid.innerHTML = "";
+
+    lessons.forEach((lesson, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "lesson-tile" +
+            (index === currentLesson ? " active" : "");
+
+        button.innerHTML = `
+            <span class="tile-number">${lesson.icon}</span>
+            <strong>Lesson ${index + 1}</strong>
+            <small>${lesson.short}</small>
+        `;
+
+        button.addEventListener("click", () => {
+            currentLesson = index;
+            renderQuiz();
+            document.getElementById("quizPanel").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        });
+
+        lessonGrid.appendChild(button);
+    });
+}
+
+function renderQuiz() {
+    submitted = false;
+    answers = Array(lessons[currentLesson].questions.length).fill(null);
+
+    const lesson = lessons[currentLesson];
+
+    lessonLabel.textContent =
+        `Lesson ${currentLesson + 1}: ${lesson.title}`;
+
+    questionCount.textContent =
+        `${lesson.questions.length} questions`;
+
+    questionsBox.innerHTML = "";
+    resultBox.classList.remove("show");
+
+    lesson.questions.forEach((question, qIndex) => {
+        const card = document.createElement("article");
+        card.className = "question-card";
+
+        const heading = document.createElement("h3");
+        heading.textContent =
+            `${qIndex + 1}. ${question.q}`;
+        card.appendChild(heading);
+
+        const options = document.createElement("div");
+        options.className = "options";
+
+        question.options.forEach((option, optionIndex) => {
+            const label = document.createElement("label");
+            label.className = "option";
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `question-${qIndex}`;
+            input.value = optionIndex;
+
+            input.addEventListener("change", () => {
+                if (submitted) return;
+                answers[qIndex] = optionIndex;
+                updateProgress();
+            });
+
+            const text = document.createElement("span");
+            text.textContent = option;
+
+            label.appendChild(input);
+            label.appendChild(text);
+            options.appendChild(label);
+        });
+
+        card.appendChild(options);
+
+        const feedback = document.createElement("div");
+        feedback.className = "feedback";
+        feedback.id = `feedback-${qIndex}`;
+        feedback.setAttribute("aria-live", "polite");
+        card.appendChild(feedback);
+
+        questionsBox.appendChild(card);
+    });
+
+    document.getElementById("checkBtn").disabled = false;
+    document.getElementById("checkBtn").textContent =
+        "✓ Check My Answers";
+
+    document.getElementById("nextBtn").textContent =
+        currentLesson === lessons.length - 1
+        ? "Back to Lesson 1 ↺"
+        : "Next Lesson →";
+
+    renderLessonButtons();
+    updateProgress();
+
+    document.getElementById("quizPanel").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function updateProgress() {
+    const total = answers.length;
+    const answered = answers.filter(answer => answer !== null).length;
+    const percent = total ? (answered / total) * 100 : 0;
+
+    progressFill.style.width = percent + "%";
+    progressTrack.setAttribute("aria-valuenow", Math.round(percent));
+
+    questionCount.textContent =
+        `${answered} of ${total} answered`;
+}
+
+function checkAnswers() {
+    if (submitted) return;
+
+    const unanswered = answers.filter(answer => answer === null).length;
+
+    if (unanswered > 0) {
+        alert(
+            `You still have ${unanswered} unanswered question(s). ` +
+            "Please answer all questions before checking your work."
+        );
+        return;
+    }
+
+    submitted = true;
+
+    const lesson = lessons[currentLesson];
+    let score = 0;
+
+    lesson.questions.forEach((question, index) => {
+        const card = questionsBox.children[index];
+        const optionLabels = card.querySelectorAll(".option");
+        const inputs = card.querySelectorAll("input");
+        const feedback = document.getElementById(`feedback-${index}`);
+
+        inputs.forEach(input => input.disabled = true);
+
+        optionLabels[question.answer].classList.add("correct");
+
+        if (answers[index] === question.answer) {
+            score++;
+            feedback.className = "feedback show good";
+            feedback.textContent =
+                "✓ Correct! " + question.explanation;
+        } else {
+            optionLabels[answers[index]].classList.add("incorrect");
+            feedback.className = "feedback show bad";
+            feedback.textContent =
+                "✗ Not quite. Correct answer: " +
+                question.options[question.answer] +
+                ". " + question.explanation;
+        }
+    });
+
+    const total = lesson.questions.length;
+    const percent = Math.round((score / total) * 100);
+
+    document.getElementById("scoreValue").textContent =
+        `${score}/${total}`;
+
+    document.getElementById("scorePercent").textContent =
+        `${percent}%`;
+
+    document.getElementById("resultEmoji").textContent =
+        percent === 100 ? "🏆" :
+        percent >= 70 ? "🌟" :
+        percent >= 50 ? "👏" : "💪";
+
+    document.getElementById("resultTitle").textContent =
+        percent === 100 ? "Excellent! Perfect Score!" :
+        percent >= 70 ? "Great Job!" :
+        percent >= 50 ? "Good Effort!" :
+        "Keep Practising!";
+
+    document.getElementById("resultMessage").textContent =
+        `You scored ${score} out of ${total} in Lesson ${currentLesson + 1}.`;
+
+    document.getElementById("resultAdvice").textContent =
+        percent === 100
+        ? "Amazing! You answered every question correctly. Try another lesson!"
+        : "Read the explanations above, review your lesson notes, and try again. Every attempt helps you learn.";
+
+    resultBox.classList.add("show");
+
+    document.getElementById("checkBtn").disabled = true;
+    document.getElementById("checkBtn").textContent = "Answers Checked";
+
+    updateProgress();
+
+    resultBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+document.getElementById("checkBtn")
+    .addEventListener("click", checkAnswers);
+
+document.getElementById("nextBtn")
+    .addEventListener("click", () => {
+        currentLesson = (currentLesson + 1) % lessons.length;
+        renderQuiz();
+    });
+
+document.getElementById("resetBtn")
+    .addEventListener("click", renderQuiz);
+
+document.getElementById("retryBtn")
+    .addEventListener("click", renderQuiz);
+
+document.getElementById("reviewBtn")
+    .addEventListener("click", () => {
+        questionsBox.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+
+renderQuiz();
+</script>
+
+</body>
+</html>

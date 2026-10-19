@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | DTI Learning Hub</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .about-intro { text-align: center; }
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin: 25px 0;
+    }
+    .member-card {
+      background: #fff;
+      border: 1px solid #e6dcd0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px #49365310;
+      transition: transform .2s ease;
+    }
+    .member-card:hover { transform: translateY(-5px); }
+    .member-photo {
+      width: 100%;
+      height: 240px;
+      display: block;
+      object-fit: cover;
+      background: #f7e8d4;
+    }
+    .member-info { padding: 20px; }
+    .member-info h3 { color: #493653; margin-bottom: 6px; }
+    .member-role {
+      display: inline-block;
+      color: #527552;
+      background: #edf2e9;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin: 5px 0 12px;
+    }
+    .member-info p { font-size: 14px; }
+    .team-note {
+      background: #f7e8d4;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    @media (max-width: 800px) {
+      .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .member-grid { grid-template-columns: 1fr; }
+      .member-photo { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">DTI Learning Hub</a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle" type="button" aria-expanded="false">Course <span class="arrow">⌄</span></button>
+      <div class="dropdown-menu">
+        <a href="lessons/lesson1.html">Lesson 1: Introduction</a>
+        <a href="lessons/lesson2.html">Lesson 2: Binary</a>
+        <a href="lessons/lesson3.html">Lesson 3: Octal</a>
+        <a href="lessons/lesson4.html">Lesson 4: Decimal</a>
+        <a href="lessons/lesson5.html">Lesson 5: Hexadecimal</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle" type="button" aria-expanded="false">Resources <span class="arrow">⌄</span></button>
+      <div class="dropdown-menu">
+        <a href="student-resources.html">Student Resources</a>
+        <a href="teacher-resources.html">Teacher Resources</a>
+      </div>
+    </div>
+    <a href="video.html">Video</a>
+    <a href="quiz.html">Quiz</a>
+    <div class="dropdown">
+      <button class="dropdown-toggle" type="button" aria-expanded="false">More <span class="arrow">⌄</span></button>
+      <div class="dropdown-menu">
+        <a href="real-life.html">Digital Number System in Real Life</a>
+        <a href="practice.html">Practice Questions</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero about-intro">
+    <p class="eyebrow">MEET THE TEAM</p>
+    <h1>About DTI Learning Hub</h1>
+    <p>
+      We are a group of five students developing an educational
+      website about Digital Number Systems for Class IX Digital
+      Technology and Innovation (DTI).
+    </p>
+    <p>
+      Our goal is to make learning number systems more accessible
+      through lessons, videos, practice activities and teaching resources.
+    </p>
+  </section>
+
+  <section class="lesson-card">
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to provide a clear, organised and engaging
+      learning space where students can understand decimal, binary,
+      octal and hexadecimal number systems and practise converting
+      numbers between them.
+    </p>
+    <h2>What Our Website Offers</h2>
+    <ul>
+      <li>Five organised lessons about digital number systems.</li>
+      <li>Student and teacher learning resources.</li>
+      <li>Educational videos and interactive quizzes.</li>
+      <li>Practice questions and real-life applications.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Meet Our Group Members</h2>
+    <p>Each member contributes to developing and improving our learning hub.</p>
+
+    <div class="member-grid">
+      <article class="member-card">
+        <img class="member-photo" src="images/chimi wangmo.jpg"
+             alt="Photograph of Chimi Wangmo">
+        <div class="member-info">
+          <h3>Chimi Wangmo</h3>
+          <span class="member-role">Content Research</span>
+          <p>Researches number-system concepts and prepares explanations and real-life examples for the learning materials.</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <img class="member-photo" src="images/kalpana.jpg"
+             alt="Photograph of Kalpana">
+        <div class="member-info">
+          <h3>Kalpana</h3>
+          <span class="member-role">Website Development</span>
+          <p>Develops and integrates the website pages, navigation, layout and styling using HTML, CSS and JavaScript.</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <img class="member-photo" src="images/sonam dechen.jpg"
+             alt="Photograph of Sonam Dechen">
+        <div class="member-info">
+          <h3>Sonam Dechen</h3>
+          <span class="member-role">Practice and Assessment</span>
+          <p>Prepares practice exercises, conversion questions, assessment items and answer keys.</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <img class="member-photo" src="images/Tandin bidha.jpg"
+             alt="Photograph of Tandin Bidha">
+        <div class="member-info">
+          <h3>Tandin Bidha</h3>
+          <span class="member-role">Videos and Multimedia</span>
+          <p>Organises educational videos and supports the presentation of concepts through visual learning materials.</p>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <img class="member-photo" src="images/sonam choki.jpg"
+             alt="Photograph of Sonam Choki">
+        <div class="member-info">
+          <h3>Sonam Choki</h3>
+          <span class="member-role">Teacher Resources and Review</span>
+          <p>Organises teacher resources and reviews learning content, usability and website consistency.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="team-note">
+    <h2>Working Together</h2>
+    <p>
+      Although we have divided our responsibilities, the project is
+      a collaborative effort. We share ideas, review one another's
+      work, test the learning activities and work together to improve
+      the quality of DTI Learning Hub.
+    </p>
+  </section>
+
+  <section class="lesson-card">
+    <h2>Explore Our Learning Hub</h2>
+    <p>Start learning about digital number systems with us.</p>
+    <a href="real-life.html" class="primary-button">Explore Real-Life Applications →</a>
+  </section>
+</main>
+
+<footer>
+  DTI Learning Hub | Class 9 Digital Number System
+</footer>
+
+<script src="./script.js"></script>
+</body>
+</html>

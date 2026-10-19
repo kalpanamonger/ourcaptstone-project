@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Lessons | DTI Learning Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">DTI</span>
+      <span>DTI Learning Hub</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+    <div class="navlinks" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="courses.html" class="active">Course</a>
+      <a href="student-resources.html">Resources</a>
+      <a href="video.html">Video</a>
+      <a href="quiz.html" class="nav-cta">Quiz</a>
+      <a href="index.html#more">More</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Class IX · Chapter 1</span>
+      <h1>Digital Number System</h1>
+      <p>Explore five step-by-step lessons about number systems. Learn the concepts, study worked examples, and practise each conversion method.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#lessons">Explore the 5 lessons ↓</a>
+        <a class="btn btn-light" href="lesson1.html">Start Lesson 1</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="images/bhutan-dzong.svg" alt="Bhutan-inspired dzong and mountains">
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <section id="lessons">
+    <div class="section-head">
+      <span class="kicker">Your learning path</span>
+      <h2>Choose a lesson</h2>
+      <p class="lead">Each lesson includes explanations, worked examples, and practice questions with answers you can reveal.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card lesson-card">
+        <img src="images/bhutan-classroom.svg" alt="Bhutan-inspired classroom illustration">
+        <span class="lesson-num">LESSON 1</span>
+        <h3>Data Representation and Number Systems</h3>
+        <p>Understand how computers represent information and learn about the four common number systems.</p>
+        <p><b>Topics:</b> Bits, bytes, decimal, binary, octal and hexadecimal basics.</p>
+        <a class="btn btn-gold" href="lesson1.html">Open Lesson 1 →</a>
+      </article>
+
+      <article class="card lesson-card">
+        <img src="images/bhutan-mountains.svg" alt="Bhutan mountains illustration">
+        <span class="lesson-num">LESSON 2</span>
+        <h3>Binary and Octal Number Systems</h3>
+        <p>Learn binary and octal place values and convert numbers between the two systems.</p>
+        <p><b>Topics:</b> Place values and conversion using groups of three binary digits.</p>
+        <a class="btn btn-gold" href="lesson2.html">Open Lesson 2 →</a>
+      </article>
+
+      <article class="card lesson-card">
+        <img src="images/bhutan-dzong.svg" alt="Bhutanese dzong illustration">
+        <span class="lesson-num">LESSON 3</span>
+        <h3>Hexadecimal and Binary Conversion</h3>
+        <p>Understand base 16 and use four-bit groups to convert hexadecimal and binary numbers.</p>
+        <p><b>Topics:</b> Hexadecimal digits 0–9 and A–F, and binary conversion.</p>
+        <a class="btn btn-gold" href="lesson3.html">Open Lesson 3 →</a>
+      </article>
+
+      <article class="card lesson-card">
+        <img src="images/bhutan-classroom.svg" alt="Classroom illustration">
+        <span class="lesson-num">LESSON 4</span>
+        <h3>Decimal to Binary, Octal and Hexadecimal</h3>
+        <p>Use the division-and-remainder method to convert decimal numbers.</p>
+        <p><b>Topics:</b> Repeated division and reading remainders from bottom to top.</p>
+        <a class="btn btn-gold" href="lesson4.html">Open Lesson 4 →</a>
+      </article>
+
+      <article class="card lesson-card">
+        <img src="images/bhutan-mountains.svg" alt="Bhutan mountains illustration">
+        <span class="lesson-num">LESSON 5</span>
+        <h3>Converting Binary, Octal and Hexadecimal to Decimal</h3>
+        <p>Use positional powers to convert numbers into decimal and revise the chapter.</p>
+        <p><b>Topics:</b> Positional notation and conversion to decimal.</p>
+        <a class="btn btn-gold" href="lesson5.html">Open Lesson 5 →</a>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="visual-row">
+      <img src="images/bhutan-classroom.svg" alt="Illustration of a classroom">
+      <div>
+        <span class="kicker">Learn in context</span>
+        <h2>Digital skills, rooted in Bhutan</h2>
+        <p>Connect number systems to computer labs, digital learning and technology used in everyday life.</p>
+        <a class="btn btn-gold" href="lesson1.html">Begin learning</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><b>DTI Learning Hub</b> · Class IX Digital Technology and Innovation</p>
+  <p>Learn step by step. Practise with confidence.</p>
+  <p><a href="courses.html">All lessons</a> · <a href="index.html">Home</a></p>
+</footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navlinks = document.getElementById("navlinks");
+
+if (menuToggle && navlinks) {
+  menuToggle.addEventListener("click", () => {
+    const open = navlinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(open));
+  });
+}
+</script>
+</body>
+</html>

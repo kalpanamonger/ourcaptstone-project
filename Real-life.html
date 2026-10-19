@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Number Systems in Real Life | DTI Learning Hub</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        .real-life-hero {
+            background: linear-gradient(120deg, #f7e8d4, #f8d9cb);
+            padding: 55px 8%;
+            text-align: center;
+        }
+
+        .real-life-hero h1 {
+            color: var(--plum);
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.2;
+            margin: 12px 0 18px;
+        }
+
+        .real-life-hero p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 18px;
+        }
+
+        .real-life-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin: 25px 0;
+        }
+
+        .real-life-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 5px 18px #49365310;
+            transition: transform 0.2s ease;
+        }
+
+        .real-life-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .real-life-card .example-icon {
+            font-size: 35px;
+        }
+
+        .real-life-card h3 {
+            color: var(--plum);
+            margin: 10px 0;
+        }
+
+        .number-example {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 13px;
+            background: var(--soft);
+            color: var(--plum);
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .important-note {
+            background: #e9eee4;
+            border-left: 5px solid var(--green);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .activity-box {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            margin-top: 25px;
+        }
+
+        .activity-box h2,
+        .content-section h2 {
+            color: var(--plum);
+            margin-bottom: 15px;
+        }
+
+        .activity-question {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-question label {
+            display: block;
+            margin: 8px 0;
+        }
+
+        .activity-feedback {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 650px) {
+            .real-life-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .real-life-hero {
+                padding: 40px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">DTI Learning Hub</a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+
+        <div class="dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false">
+                Course <span class="arrow">⌄</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="lessons/lesson1.html">Lesson 1: Introduction</a>
+                <a href="lessons/lesson2.html">Lesson 2: Binary Number System</a>
+                <a href="lessons/lesson3.html">Lesson 3: Octal Number System</a>
+                <a href="lessons/lesson4.html">Lesson 4: Decimal Number System</a>
+                <a href="lessons/lesson5.html">Lesson 5: Hexadecimal Number System</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false">
+                Resources <span class="arrow">⌄</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="student-resources.html">Student Resources</a>
+                <a href="teacher-resources.html">Teacher Resources</a>
+            </div>
+        </div>
+
+        <a href="video.html">Video</a>
+        <a href="quiz.html">Quiz</a>
+
+        <div class="dropdown">
+            <button type="button" class="dropdown-toggle" aria-expanded="false">
+                More <span class="arrow">⌄</span>
+            </button>
+            <div class="dropdown-menu">
+                <a href="real-life.html">Digital Number System in Real Life</a>
+                <a href="practice.html">Practice Questions</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <section class="real-life-hero">
+        <p class="eyebrow">CONNECTING LEARNING WITH EVERYDAY LIFE</p>
+        <h1>Digital Number Systems in Real Life</h1>
+        <p>
+            Have you ever wondered how computers store information,
+            how colours are represented on a screen, or how digital
+            devices process data? Number systems help make these
+            digital operations possible.
+        </p>
+    </section>
+
+    <div class="container">
+
+        <section class="content-section">
+            <div class="lesson-card">
+                <h2>What Are Digital Number Systems?</h2>
+                <p>
+                    A number system is a method of representing numbers
+                    using a set of symbols and rules. In digital
+                    technology, number systems are used to represent,
+                    process, store and communicate information.
+                </p>
+                <p>
+                    The four important number systems are decimal,
+                    binary, octal and hexadecimal. Each has a different
+                    base and a different set of symbols.
+                </p>
+                <p>
+                    Humans commonly use decimal numbers in everyday
+                    counting, while digital electronic circuits use
+                    two distinguishable states that are represented
+                    using binary digits, 0 and 1.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Where Are Number Systems Used?</h2>
+            <p>Explore these examples from everyday life.</p>
+
+            <div class="real-life-grid">
+
+                <article class="real-life-card">
+                    <div class="example-icon">💻</div>
+                    <h3>1. Computers and Laptops</h3>
+                    <p>
+                        Computers represent digital data using binary
+                        digits (0 and 1). These digits are used to
+                        encode instructions, text, images and other
+                        information processed by a computer.
+                    </p>
+                    <div class="number-example">Binary: 1010</div>
+                    <p>
+                        Example: The binary number 1010 represents
+                        decimal 10.
+                    </p>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">📱</div>
+                    <h3>2. Smartphones</h3>
+                    <p>
+                        Smartphones process digital information such
+                        as messages, photographs, audio and applications.
+                        This information is represented internally
+                        using binary data.
+                    </p>
+                    <p>
+                        Hexadecimal is also useful when developers
+                        inspect memory addresses, data and technical
+                        information.
+                    </p>
+                    <div class="number-example">Binary: 0 and 1</div>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">🎨</div>
+                    <h3>3. Digital Colours</h3>
+                    <p>
+                        Many digital images use RGB colour values.
+                        In common web colour notation, hexadecimal
+                        represents the red, green and blue components
+                        using two hexadecimal digits per component.
+                    </p>
+                    <p>
+                        For example, #FF0000 represents pure red in
+                        standard RGB hexadecimal notation.
+                    </p>
+                    <div class="number-example">Red: #FF0000</div>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">🌐</div>
+                    <h3>4. Websites and Programming</h3>
+                    <p>
+                        Programmers use hexadecimal notation to
+                        represent values such as web colours and
+                        to inspect low-level digital data. Binary
+                        represents the underlying digital values.
+                    </p>
+                    <p>
+                        For example, a website's CSS can use
+                        hexadecimal colour codes to set the colour
+                        of headings, backgrounds and buttons.
+                    </p>
+                    <div class="number-example">CSS: #493653</div>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">🖼️</div>
+                    <h3>5. Digital Images and Videos</h3>
+                    <p>
+                        Images and videos are stored and processed
+                        as digital data. Binary bits represent
+                        encoded information, including pixel values
+                        and compressed media data.
+                    </p>
+                    <p>
+                        A picture taken with a phone is converted
+                        into digital data so it can be stored,
+                        edited and shared.
+                    </p>
+                    <div class="number-example">Digital data: Bits and bytes</div>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">🔢</div>
+                    <h3>6. Calculators and Digital Devices</h3>
+                    <p>
+                        Digital calculators and electronic devices
+                        process numerical information using digital
+                        circuits. Binary representation supports
+                        the processing of numbers and calculations.
+                    </p>
+                    <p>
+                        People usually enter decimal numbers, while
+                        the device processes data internally in
+                        digital form.
+                    </p>
+                    <div class="number-example">Decimal: 25</div>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">🧩</div>
+                    <h3>7. Octal Number System</h3>
+                    <p>
+                        Octal uses eight symbols, from 0 to 7.
+                        Each octal digit corresponds to a group
+                        of three binary bits, making long binary
+                        values easier to write in some contexts.
+                    </p>
+                    <p>
+                        Octal notation is also used in Unix-like
+                        systems to express file permission values.
+                    </p>
+                    <div class="number-example">Octal: 17 = Decimal: 15</div>
+                </article>
+
+                <article class="real-life-card">
+                    <div class="example-icon">🔐</div>
+                    <h3>8. Digital Data and Security</h3>
+                    <p>
+                        Digital systems store and transmit information
+                        as encoded data. Binary representation is
+                        fundamental to digital communication, while
+                        hexadecimal is often used to display data
+                        in a readable form during technical analysis.
+                    </p>
+                    <p>
+                        For example, technicians may inspect
+                        hexadecimal values when troubleshooting
+                        computer data.
+                    </p>
+                    <div class="number-example">Hexadecimal: 2F</div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="lesson-card">
+                <h2>Comparison of the Four Number Systems</h2>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Number System</th>
+                                <th>Base</th>
+                                <th>Symbols Used</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Decimal</td>
+                                <td>10</td>
+                                <td>0–9</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td>Binary</td>
+                                <td>2</td>
+                                <td>0 and 1</td>
+                                <td>11001</td>
+                            </tr>
+                            <tr>
+                                <td>Octal</td>
+                                <td>8</td>
+                                <td>0–7</td>
+                                <td>31</td>
+                            </tr>
+                            <tr>
+                                <td>Hexadecimal</td>
+                                <td>16</td>
+                                <td>0–9 and A–F</td>
+                                <td>19</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="important-note">
+                <h2>Did You Know?</h2>
+                <p>
+                    One hexadecimal digit represents exactly four
+                    binary bits. For example, hexadecimal A represents
+                    binary 1010, which equals decimal 10.
+                </p>
+                <p>
+                    This is one reason hexadecimal is useful when
+                    working with binary data: it allows long strings
+                    of binary digits to be written more compactly.
+                </p>
+            </div>
+        </section>
+
+        <section class="activity-box">
+            <h2>🎯 Test Your Understanding</h2>
+            <p>
+                Choose the correct answer for each question and
+                click Submit Answers to check your understanding.
+            </p>
+
+            <form id="realLifeQuiz">
+
+                <fieldset class="quiz-question">
+                    <legend>1. Which number system do digital computers use to represent data internally?</legend>
+                    <label><input type="radio" name="q1" value="a"> Decimal</label>
+                    <label><input type="radio" name="q1" value="b"> Binary</label>
+                    <label><input type="radio" name="q1" value="c"> Octal</label>
+                </fieldset>
+
+                <fieldset class="quiz-question">
+                    <legend>2. Which number system is commonly used in web colour codes such as #FF0000?</legend>
+                    <label><input type="radio" name="q2" value="a"> Binary</label>
+                    <label><input type="radio" name="q2" value="b"> Decimal</label>
+                    <label><input type="radio" name="q2" value="c"> Hexadecimal</label>
+                </fieldset>
+
+                <fieldset class="quiz-question">
+                    <legend>3. What is the base of the octal number system?</legend>
+                    <label><input type="radio" name="q3" value="a"> 2</label>
+                    <label><input type="radio" name="q3" value="b"> 8</label>
+                    <label><input type="radio" name="q3" value="c"> 16</label>
+                </fieldset>
+
+                <fieldset class="quiz-question">
+                    <legend>4. Which binary number represents decimal 10?</legend>
+                    <label><input type="radio" name="q4" value="a"> 1010</label>
+                    <label><input type="radio" name="q4" value="b"> 1001</label>
+                    <label><input type="radio" name="q4" value="c"> 1110</label>
+                </fieldset>
+
+                <button type="submit">Submit Answers</button>
+                <button type="reset" class="secondary-button">Try Again</button>
+
+                <p id="quizResult" class="activity-feedback" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="lesson-card" style="margin-top: 25px;">
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>Number systems represent numerical information using symbols and rules.</li>
+                <li>Binary is fundamental to digital computers.</li>
+                <li>Decimal is the number system people commonly use for everyday counting.</li>
+                <li>Octal and hexadecimal can represent binary values more compactly.</li>
+                <li>Number systems are relevant to programming, digital images, web colours and data processing.</li>
+            </ul>
+        </section>
+
+        <div class="resource-links">
+            <a href="index.html" class="secondary-button">← Back to Home</a>
+            <a href="practice.html" class="primary-button">Explore Practice Questions →</a>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    DTI Learning Hub | Class 9 Digital Number System
+</footer>
+
+<script src="./script.js"></script>
+
+<script>
+    const realLifeQuiz = document.getElementById("realLifeQuiz");
+    const quizResult = document.getElementById("quizResult");
+
+    realLifeQuiz.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const answers = {
+            q1: "b",
+            q2: "c",
+            q3: "b",
+            q4: "a"
+        };
+
+        let score = 0;
+        let unanswered = 0;
+
+        for (const question in answers) {
+            const selected = realLifeQuiz.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+            if (!selected) {
+                unanswered++;
+            } else if (selected.value === answers[question]) {
+                score++;
+            }
+        }
+
+        if (unanswered > 0) {
+            quizResult.textContent =
+                "Please answer all four questions before submitting.";
+            quizResult.style.color = "#493653";
+            return;
+        }
+
+        quizResult.textContent =
+            "You scored " + score + " out of 4. " +
+            (score === 4
+                ? "Excellent work! You understand the real-life uses of number systems."
+                : "Good effort! Review the explanations above and try again.");
+
+        quizResult.style.color = score === 4 ? "#527451" : "#b45e4e";
+    });
+
+    realLifeQuiz.addEventListener("reset", function() {
+        quizResult.textContent = "";
+    });
+</script>
+
+</body>
+</html>
